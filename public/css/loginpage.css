@@ -1,0 +1,224 @@
+body {
+    margin: 0;
+    font-family: 'Avenir', sans-serif !important;
+    overflow: hidden;
+    background-color: #8D1536;
+    position: relative; /* Ensure the body is relative for absolute positioning */
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0; /* Position at the top of the body */
+    left: 0;
+    width: 100%; /* Cover the entire viewport */
+    height: 100%; /* Adjust the height as needed */
+    background-image: url('/images/foreground.png'); /* Adjust the path to your image */
+    background-position: center; /* Center the image within the element */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-size: cover; /* Ensure the image covers the entire element */
+    z-index: -1; /* Place behind other content */
+}
+
+
+
+.container{
+    position: relative;
+    width: 100%;
+    min-height: 100vm;
+
+}
+
+
+.title{
+    font-weight: 600;
+    margin: 0;
+    color: white;
+    font-size: 3rem;
+    margin-bottom: -10px !important;
+}
+
+h2 {
+    font-size: 2rem !important;
+    font-weight: 600;
+}
+
+.background {
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: fixed;
+    background-color: transparent !important;
+  }
+
+.card-container {
+    width: 100%;
+    max-width: 450px;
+    background-color: rgba(248, 248, 248, 1);
+    border-radius: 12px;
+    padding: 20px;
+    color: #fff;
+}
+
+.form-group {
+    margin-bottom: 1rem; /* Space between form groups */
+}
+
+/* Input field styling (optional, if needed) */
+.input-field, .input-field:hover {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    color: #000000;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-field::placeholder {
+    color: #7c7c7c !important;
+}
+
+.input-field:focus {
+    border-color: #00573f;
+    box-shadow: 0 0 5px rgba(0, 44, 31, 0.25) !important;
+    color: #121212 !important;
+}
+
+.btn-primary {
+    background-color: #00573f;
+    border-color: #00573f;
+    color: #fff;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #002c1f;
+    border-color: #002c1f;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    background-color: #002c1f !important;
+    border-color: #002c1f !important;
+    box-shadow: none !important;
+}
+
+.btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
+    background-color: #00573f;
+    border-color: #002c1f;
+}
+
+.btn-primary:active:focus, .btn-primary:active.focus {
+    box-shadow: none;
+}
+
+
+/* Small style for form options */
+.form-options {
+    font-size: 0.875rem !important; /* Adjust font size */
+}
+
+.form-check-label.small {
+    font-size: 0.875rem !important; /* Adjust font size */
+}
+
+.forgot-password.small {
+    font-size: 0.875rem !important; /* Adjust font size */
+    color: #00573f !important; /* Adjust link color */
+    position: relative; /* Ensure positioning context for pseudo-element */
+    transition: color 0.3s; /* Smooth transition for color change */
+}
+
+.forgot-password.small::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #00573f; /* Initial underline color */
+    transition: width 0.3s ease-in-out; /* Animation for underline */
+}
+
+.forgot-password.small:hover::before {
+    width: 100%; /* Full width of the link on hover */
+}
+
+.forgot-password.small:focus {
+    color: #002c1f !important; /* Adjust link color on focus */
+    text-decoration: underline;
+    outline: none;
+}
+
+.divider {
+    margin: 20px 0;
+    font-size: 14px;
+    color: #565656;
+}
+/* Button styling */
+.google-login {
+    background-color: transparent !important; /* Transparent background */
+    border: none !important; /* No border */
+    color: #00573f !important; /* Main color for text */
+    transition: color 0.3s;
+    font-size: 14px; /* Adjust font size as needed */
+    text-decoration: none !important; /* Remove default link underline */
+    display: inline-block; /* Ensures inline display */
+    cursor: pointer; /* Pointer cursor */
+}
+
+.google-login:hover {
+    color: #002c1f !important; /* Darker color on hover */
+    background-color: transparent !important;
+}
+
+.google-login:focus, .google-login.focus {
+    color: #00573f !important; /* Darker color on hover */
+    background-color: transparent !important;
+}
+
+
+label {
+    font-weight: bold;
+    color: #495057; /* Text color */
+    margin-bottom: 0.5rem; /* Spacing below the label */
+    display: block; /* Ensures labels are on their own line */
+}
+
+.subtitle {
+    text-align: center; /* Center align the text */
+    color: #000000; /* Example: Adjust text color as needed */
+    font-size: 1.5rem; /* Example: Adjust font size as needed */
+}
+
+.subhead {
+    text-align: center; /* Center align the text */
+    color: #ffffff; /* Example: Adjust text color as needed */
+    font-size: 1.2rem !important; /* Example: Adjust font size as needed */
+    font-weight: 400;
+    margin: 0;
+}
+
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    body::before {
+        /* Adjust background size and positioning for mobile */
+        height: 100%; /* Ensure it covers the full height */
+    }
+
+    .title {
+        font-size: 2rem; /* Adjust title font size for smaller screens */
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 1.5rem !important; /* Adjust heading font size for smaller screens */
+    }
+
+    .card-container {
+        max-width: 95%; /* Ensure cards expand to full width on smaller screens */
+    }
+}
