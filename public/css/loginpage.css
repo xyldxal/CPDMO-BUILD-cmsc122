@@ -13,7 +13,7 @@ body::before {
     left: 0;
     width: 100%; /* Cover the entire viewport */
     height: 100%; /* Adjust the height as needed */
-    background-image: url('/images/foreground.png'); /* Adjust the path to your image */
+    background-image: url('/images/foreground_new.png'); /* Adjust the path to your image */
     background-position: center; /* Center the image within the element */
     background-repeat: no-repeat; /* Prevent tiling */
     background-size: cover; /* Ensure the image covers the entire element */
