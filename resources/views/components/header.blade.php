@@ -89,7 +89,12 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0 py-3">
     <div class="container-xl">
-        <a class="navbar-brand" href="#">CPDMO BUILD</a>
+        <!-- Logo and Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{{ asset('images/build_white.png') }}" alt="BUILD Logo" class="navbar-logo">
+            <span class="ms-2">CPDMO BUILD</span>
+        </a>
+
         <!-- Navbar toggle -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
