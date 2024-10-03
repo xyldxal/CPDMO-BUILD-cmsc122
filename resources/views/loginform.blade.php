@@ -20,7 +20,10 @@
             
             <!-- Titles -->
             <div class="text-center mb-4">
-                <h1 class="title mb-2">BUILD&#x2122;</h1>
+                <h1 class="title mb-2 logo-text">
+                    <img src="{{ asset('images/build_white.png') }}" alt="BUILD Logo">
+                    BUILD&#x2122;
+                </h1>
                 <h2 class="subhead">Build Updates and Infrastructure Listings Database</h2>
             </div>
             
