@@ -9,3 +9,13 @@ body {
     font-size: 12px;
 
 }
+
+.navbar-logo {
+    height: 1.5em; /* Adjust this to match the font size of the text */
+    vertical-align: middle; /* Aligns the logo with the text */
+}
+
+.navbar-brand span {
+    font-size: 20px; /* Adjust font size to fit your design */
+    line-height: 1.5em; /* To match the logo size */
+}

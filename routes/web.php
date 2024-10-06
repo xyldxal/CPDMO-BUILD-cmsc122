@@ -101,3 +101,7 @@ Route::get('/', function () {
     // return Inertia('Home');
     
 });
+
+Route::get('/form', function () {
+    return view('components.form'); 
+});

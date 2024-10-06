@@ -19,6 +19,7 @@ use App\Models\ProjectContractor;
 use App\Models\RecentUpdate;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ProgressTrackerController extends HomeController
 {
@@ -75,7 +76,50 @@ class ProgressTrackerController extends HomeController
          */
         // $project_headers = ['accomplishment_percentage', 'notes', 'billing_percentage', 'total_billings', 'as_of', 'college_unit', 'project_title', 'status', 'as_of', 'notes', 'daed_contractor', 'construction_contractor', 'construction_manager', 'contract_amount', 'contractor', 'contract_completion_date', 'notice_of_award', 'notice_to_proceed', 'additional_days', 'contract_duration', 'fund_source', 'is_funded', 'notes', 'approved_budget', 'bid_price_php', 'change_order_number', 'amount', 'notes', 'revised_contract_amount', 'suspension_date', 'resumption_date_resumed', 'resumption_revised_completion_date', 'extension_date', 'extension_duration', 'revised_contract_duration', 'reason', 'end_of_contract_time', 'original_date_of_completion', 'remaining_number_of_days', 'accomplishment', 'project_in_charge', 'credits', 'date', 'notes'];
 
-        $project_headers = ['Accomplishment Percentage', 'Notes', 'Billing Percentage', 'Total Billings', 'As Of', 'College Unit', 'Project Title', 'Status', 'Dead Contractor', 'Construction Contractor', 'Construction Manager', 'Contract Amount', 'Contractor', 'Contract Completion Date', 'Notice of Award', 'Notice to Proceed', 'Additional Days', 'Contract Duration', 'Fund Source', 'Is Funded', 'Approved Budget', 'Bid Price (PHP)', 'Change Order Number', 'Amount', 'Revised Contract Amount', 'Suspension Date', 'Resumption Date', 'Resumption Revised Completion Date', 'Extension Date', 'Extension Duration', 'Revised Contract Duration', 'Reason', 'End of Contract Time', 'Original Date of Completion', 'Remaining Number of Days', 'Accomplishment', 'Project In Charge', 'Credits', 'Date'];
+        $project_headers = ['Accomplishment Percentage', 
+        'Notes',
+        'Billing Percentage',
+        'Total Billings',
+        'As Of',
+        'College Unit',
+        'Project Title',
+        'Status',   
+        'Status As Of',
+        'Status Notes',
+        'Daed Contractor',
+        'Construction Contractor',
+        'Construction Manager',
+        'Contract Amount',
+        'Contractor',
+        'Contract Completion Date',
+        'Notice of Award',
+        'Notice to Proceed',
+        'Additional Days',
+        'Contract Duration',
+        'Fund Source',
+        'Is Funded',
+        'Fund Source Notes',
+        'Approved Budget',
+        'Bid Price (PHP)',
+        'Change Order Number',
+        'Amount',
+        'Change Order Notes',
+        'Revised Contract Amount',
+        'Suspension Date',
+        'Resumption Date',
+        'Resumption Revised Completion Date',
+        'Extension Date',
+        'Extension Duration',
+        'Revised Contract Duration',
+        'Reason',
+        'End of Contract Time',
+        'Original Date of Completion',
+        'Remaining Number of Days',
+        'Accomplishment',
+        'Project In Charge',
+        'Credits',
+        'Date',
+        'Notes'];
 
         $JSON_to_compile = array();
         
@@ -91,7 +135,9 @@ class ProgressTrackerController extends HomeController
             array_push($progressTrackerTable, 
                 $this->billings->where('project_id', $i)->pluck('billing_percentage')->toArray(), 
                 $this->billings->where('project_id', $i)->pluck('total_billings')->toArray(), 
-                $this->billings->where('project_id', $i)->pluck('as_of')->toArray());
+                $this->billings->where('project_id', $i)->pluck('as_of')->map(function ($date) {
+                    return Carbon::parse($date)->format('m/d/Y');
+                })->toArray());
             //5-6
             array_push($progressTrackerTable, 
                 $this->projects->where('project_id', $i)->pluck('college_unit')->toArray(), 
@@ -99,22 +145,31 @@ class ProgressTrackerController extends HomeController
             //7-9
             array_push($progressTrackerTable, 
                 $this->status->where('project_id', $i)->pluck('status')->toArray(), 
-                $this->status->where('project_id', $i)->pluck('as_of')->toArray(), 
+                $this->status->where('project_id', $i)->pluck('as_of')->map(function ($date) {
+                    return Carbon::parse($date)->format('m/d/Y');
+                })->toArray(), 
                 $this->status->where('project_id', $i)->pluck('notes')->toArray());
             //10-15
             array_push($progressTrackerTable, 
-                $this->project_contractor->where('project_id', $i)->pluck('daed_contractor')->toArray(),  
-                $this->project_contractor->where('project_id', $i)->pluck('construction_contractor')->toArray(), 
-                $this->project_contractor->where('project_id', $i)->pluck('construction_manager')->toArray(), 
-                $this->project_contractor->where('project_id', $i)->pluck('contract_amount')->toArray(), 
-                $this->project_contractor->where('project_id', $i)->pluck('contractor')->toArray(), 
-                $this->project_contractor->where('project_id', $i)->pluck('contract_completion_date')->toArray());
+            $this->project_contractor->where('project_id', $i)->pluck('daed_contractor')->toArray(),  
+            $this->project_contractor->where('project_id', $i)->pluck('construction_contractor')->toArray(), 
+            $this->project_contractor->where('project_id', $i)->pluck('construction_manager')->toArray(), 
+            $this->project_contractor->where('project_id', $i)->pluck('contract_amount')->toArray(), 
+            $this->project_contractor->where('project_id', $i)->pluck('contractor')->toArray(), 
+            $this->project_contractor->where('project_id', $i)->pluck('contract_completion_date')->map(function ($date) {
+                return Carbon::parse($date)->format('m/d/Y');
+            })->toArray());            
+            
             //16-19
             array_push($progressTrackerTable, 
-                $this->projects->where('project_id', $i)->pluck('notice_of_award')->toArray(), 
-                $this->projects->where('project_id', $i)->pluck('notice_to_proceed')->toArray(), 
-                $this->projects->where('project_id', $i)->pluck('additional_days')->toArray(), 
-                $this->projects->where('project_id', $i)->pluck('contract_duration')->toArray());
+            $this->projects->where('project_id', $i)->pluck('notice_of_award')->map(function ($date) {
+                return Carbon::parse($date)->format('m/d/Y');
+            })->toArray(), 
+            $this->projects->where('project_id', $i)->pluck('notice_to_proceed')->map(function ($date) {
+                return Carbon::parse($date)->format('m/d/Y');
+            })->toArray(), 
+            $this->projects->where('project_id', $i)->pluck('additional_days')->toArray(), 
+            $this->projects->where('project_id', $i)->pluck('contract_duration')->toArray());
             //20-22
             array_push($progressTrackerTable, 
                 $this->fund_sources->where('project_id', $i)->pluck('fund_source')->toArray(), 
@@ -134,18 +189,31 @@ class ProgressTrackerController extends HomeController
                 $this->projects->where('project_id', $i)->pluck('revised_contract_amount')->toArray());
             //29-36
             array_push($progressTrackerTable, 
-                $this->activities->where('project_id', $i)->pluck('suspension_date')->toArray(),
-                $this->activities->where('project_id', $i)->pluck('resumption_date_resumed')->toArray(),
-                $this->activities->where('project_id', $i)->pluck('resumption_revised_completion_date')->toArray(),
-                $this->activities->where('project_id', $i)->pluck('extension_date')->toArray(),
-                $this->activities->where('project_id', $i)->pluck('extension_duration')->toArray(),
-                $this->activities->where('project_id', $i)->pluck('revised_contract_duration')->toArray(),
-                $this->activities->where('project_id', $i)->pluck('reason')->toArray(),
-                $this->activities->where('project_id', $i)->pluck('end_of_contract_time')->toArray());
+            $this->activities->where('project_id', $i)->pluck('suspension_date')->map(function ($date) {
+                return Carbon::parse($date)->format('m/d/Y');
+            })->toArray(),
+            $this->activities->where('project_id', $i)->pluck('resumption_date_resumed')->map(function ($date) {
+                return Carbon::parse($date)->format('m/d/Y');
+            })->toArray(),
+            $this->activities->where('project_id', $i)->pluck('resumption_revised_completion_date')->map(function ($date) {
+                return Carbon::parse($date)->format('m/d/Y');
+            })->toArray(),
+            $this->activities->where('project_id', $i)->pluck('extension_date')->map(function ($date) {
+                return Carbon::parse($date)->format('m/d/Y');
+            })->toArray(),
+            $this->activities->where('project_id', $i)->pluck('extension_duration')->toArray(), 
+            $this->activities->where('project_id', $i)->pluck('revised_contract_duration')->toArray(), 
+            $this->activities->where('project_id', $i)->pluck('reason')->toArray(), 
+            $this->activities->where('project_id', $i)->pluck('end_of_contract_time')->map(function ($date) {
+                return Carbon::parse($date)->format('m/d/Y');
+            })->toArray());
+
             //37-38
-            array_push($progressTrackerTable, 
-                $this->projects->where('project_id', $i)->pluck('original_date_of_completion')->toArray(),
-                $this->projects->where('project_id', $i)->pluck('remaining_number_of_days')->toArray());
+            array_push($progressTrackerTable,
+            $this->projects->where('project_id', $i)->pluck('original_date_of_completion')->map(function ($date) {
+                return Carbon::parse($date)->format('m/d/Y');
+            })->toArray(), 
+            $this->projects->where('project_id', $i)->pluck('remaining_number_of_days')->toArray());
             //39
             array_push($progressTrackerTable, 
                 $this->accomplishments->where('project_id', $i)->pluck('accomplishment')->toArray());
@@ -154,9 +222,11 @@ class ProgressTrackerController extends HomeController
                 $this->projects->where('project_id', $i)->pluck('project_in_charge')->toArray());
             //41-43
             array_push($progressTrackerTable, 
-                $this->recent_updates->where('project_id', $i)->pluck('credits')->toArray(),
-                $this->recent_updates->where('project_id', $i)->pluck('date')->toArray(),
-                $this->recent_updates->where('project_id', $i)->pluck('notes')->toArray());
+            $this->recent_updates->where('project_id', $i)->pluck('credits')->toArray(),
+            $this->recent_updates->where('project_id', $i)->pluck('date')->map(function ($date) {
+                return Carbon::parse($date)->format('m/d/Y');
+            })->toArray(),
+            $this->recent_updates->where('project_id', $i)->pluck('notes')->toArray());
             
             array_push($JSON_to_compile, $progressTrackerTable);
         }

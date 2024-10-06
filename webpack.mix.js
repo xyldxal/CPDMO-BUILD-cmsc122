@@ -12,7 +12,10 @@ const mix = require('laravel-mix');
  */
 
  mix.js('resources/js/app.js', 'public/js')
- .postCss('resources/css/app.css', 'public/css', [
-     // Add Font Awesome CSS
-     require('@fortawesome/fontawesome-free/css/all.css')
- ]);
+ .vue()
+ .styles([
+     'node_modules/@fortawesome/fontawesome-free/css/all.css'
+ ], 'public/css/fontawesome.css'); // Correct way to bundle Font Awesome CSS
+
+
+
