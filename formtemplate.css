@@ -1,0 +1,203 @@
+:root {
+    --maroon: #A50034; 
+    --forest-green: #00573f; 
+    --yellow: #FFC300; 
+    --spot-black: #000000; 
+}
+
+body {
+    margin: 0;
+    font-family: 'Avenir', sans-serif !important;
+    overflow: auto;
+    background-color: #8D1536;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/foreground_new.png'); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    display: flex;              
+    justify-content: center;       
+    align-items: center;           
+    min-height: 100vh;         
+}
+
+.title {
+    font-weight: 600;
+    margin: 0;
+    color: white;
+    font-size: 3rem;
+    margin-bottom: -10px !important;
+}
+
+h2 {
+    font-size: 2rem !important;
+    font-weight: 600;
+}
+
+.card-container {
+    width: 100%;
+    max-width: 450px;
+    background-color: rgba(248, 248, 248, 1);
+    border-radius: 12px;
+    padding: 20px;
+    color: #fff;
+    position: relative;
+    margin-top: 10px;
+
+}
+
+.form-group {
+    margin-bottom: 1rem; 
+    justify-content: center; 
+    align-items: center;    
+}
+
+.input-field, .input-field:hover {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    color: #000000;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: 80%;               
+    margin: 0 auto;            
+    height: 30px;             
+    display: block;
+    appearance: none;          
+    -webkit-appearance: none;  
+    -moz-appearance: none;     
+    position: relative;
+}
+
+select.form-control {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.5 8"><path fill="none" stroke="%23000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 1l2 3.5L1 7"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    color: #000000;
+    padding: 8px 16px;         
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: 85%;               
+    margin: 0 auto;            
+    height: 40px;             
+    display: block;
+    appearance: none;          
+    -webkit-appearance: none;  
+    -moz-appearance: none;     
+    position: relative;
+    box-sizing: border-box; 
+}
+
+select.form-control:hover {
+    border-color: #ced4da;    
+    box-shadow: none;        
+    padding: 8px 16px !important;  
+    width: 85%;               
+    margin: 0 auto;            
+    height: 40px;  
+}
+
+.input-field::placeholder {
+    color: #7c7c7c !important;
+}
+
+.input-field:focus{
+    border-color: #00573f;
+    box-shadow: 0 0 5px rgba(0, 44, 31, 0.25) !important;
+    color: #121212 !important;
+}
+
+.select-field {
+    background-image: url('path/to/custom-arrow.png'); 
+    background-position: right 10px center; 
+    background-repeat: no-repeat;
+}
+
+.btn-primary {
+    background-color: var(--forest-green);
+    border-color: var(--forest-green);
+    color: #ffffff;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 85%;                   
+    height: 40px;                 
+    display: block;              
+    margin: 0 auto;             
+    text-align: center;          
+    font-family: 'Avenir', sans-serif !important;
+    font-size: 16px;
+}
+
+
+.btn-primary:hover {
+    background-color: #002c1f;
+    border-color: #002c1f;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    background-color: #002c1f !important;
+    border-color: #002c1f !important;
+    box-shadow: none !important;
+}
+
+.form-options {
+    font-size: 0.875rem !important; 
+}
+
+label {
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 0.5rem; 
+    display: block; 
+}
+
+.subtitle {
+    text-align: center; 
+    color: #000000; 
+    font-size: 1.5rem; 
+}
+
+.subhead {
+    text-align: center;
+    color: #ffffff; 
+    font-size: 1.2rem !important; 
+    font-weight: 400;
+    margin: 0;
+}
+
+
+@media (max-width: 768px) {
+    body::before {
+        height: 100%; 
+    }
+
+    .title {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 1.5rem !important; 
+    }
+
+    .card-container {
+        max-width: 95%; 
+    }
+}
+

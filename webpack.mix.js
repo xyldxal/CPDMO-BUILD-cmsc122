@@ -1,3 +1,4 @@
+
 const mix = require('laravel-mix');
 
 /*
@@ -16,6 +17,5 @@ const mix = require('laravel-mix');
  .styles([
      'node_modules/@fortawesome/fontawesome-free/css/all.css'
  ], 'public/css/fontawesome.css'); // Correct way to bundle Font Awesome CSS
-
 
 
