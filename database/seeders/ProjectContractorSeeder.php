@@ -15,7 +15,7 @@ class ProjectContractorSeeder extends Seeder
         $now = Carbon::now();
 
         // Fetch all project IDs
-        $projectIds = DB::table('projects')->pluck('project_id')->toArray();
+        $projectIds = DB::table('projects')->pluck('id')->toArray();
 
         // Ensure there are enough project IDs
         if (count($projectIds) < 10) {
@@ -34,6 +34,7 @@ class ProjectContractorSeeder extends Seeder
                 'contract_amount' => rand(200000,14000000) + ($counter * 1000),
                 'contractor' => 'Contractor ' . $counter,
                 'contract_completion_date' => $now->copy()->addDays($counter)->toDateString(),
+                'created_by' => 1,
             ];
             $counter++;
         }

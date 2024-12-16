@@ -11,15 +11,17 @@ class Image extends Model
 
     protected $table = 'image_sources';
 
-    protected $primaryKey = 'image_id';
+    // protected $primaryKey = 'image_id';
 
     protected $fillable=[
         'project_id',
         'image_source',
+        'created_by', 
+        'updated_by', 
     ];
 
     public function project()
     {
-            return $this->belongsto(Project::class, 'project_id', 'project_id');
+            return $this->belongsto(Project::class, 'project_id');
     }
 }

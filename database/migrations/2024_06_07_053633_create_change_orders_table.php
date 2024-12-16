@@ -14,18 +14,27 @@ return new class extends Migration
     public function up()
     {
         Schema::create('change_orders', function (Blueprint $table) {
-            $table->increments('change_order_id');
+            $table->increments('id');
             $table->unsignedInteger('project_id');
 
             $table->foreign('project_id')
-                ->references('project_id')
+                ->references('id')
                 ->on('projects')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
             $table->integer('change_order_number')->nullable();
-            $table->double('amount')->nullable();
+            $table->decimal('amount', 22, 2)->nullable();
             $table->string('notes')->nullable();
+            
+            // User info and Timestamps
+            $table->integer('created_by');
+            $table->integer('updated_by')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+
+            $table->foreign('created_by')->references('id')->on('system_users')->cascadeOnUpdate()->default(1);
+            $table->foreign('updated_by')->references('id')->on('system_users')->cascadeOnUpdate();
         });
     }
 

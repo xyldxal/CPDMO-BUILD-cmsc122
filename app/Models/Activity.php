@@ -11,7 +11,7 @@ class Activity extends Model
 
     protected $table = 'activities';
 
-    protected $primaryKey = 'activity_id';
+    // protected $primaryKey = 'activity_id';
 
     protected $fillable=[
         'project_id',
@@ -22,21 +22,23 @@ class Activity extends Model
         'extension_duration',
         'revised_contract_duration',
         'reason',
-        'end_of_contract_time'
+        'end_of_contract_time',
+        'created_by', 
+        'updated_by', 
     ];
 
     protected $casts = [
-        'suspension_date' => 'datetime',
-        'resumption_date_resumed' => 'datetime',
-        'resumption_revised_completion_date' => 'datetime',
-        'extension_date' => 'datetime',
+        'suspension_date' => 'date',
+        'resumption_date_resumed' => 'date',
+        'resumption_revised_completion_date' => 'date',
+        'extension_date' => 'date',
         'extension_duration' => 'integer',
         'revised_contract_duration' => 'integer',
-        'end_of_contract_time' => 'datetime',
+        'end_of_contract_time' => 'date',
     ];
 
     public function project()
     {
-            return $this->belongsto(Project::class, 'project_id', 'project_id');
+            return $this->belongsto(Project::class, 'project_id');
     }
 }

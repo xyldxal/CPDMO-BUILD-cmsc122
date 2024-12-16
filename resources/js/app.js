@@ -1,12 +1,19 @@
 require('./bootstrap');
+require('datatables.net-dt');
 
-import { createApp } from 'vue';
-import ProgressTracker from './components/ProgressTracker.vue';
-import FormTemplate from './components/FormTemplate.vue';
+// import { createApp } from 'vue';
+// import App from './App.vue';
+// import DataTable from 'datatables.net-vue3';
+// import DataTablesCore from 'datatables.net-dt';
 
-const app = createApp({});
+// // Use DataTables core with DataTable component
+// DataTable.use(DataTablesCore);
 
-app.component('progress-tracker', ProgressTracker);
-app.component('form-template', FormTemplate);
+// // Create the Vue application
+// const app = createApp(App);
 
-app.mount('#app');
+// // Register the DataTable component globally
+// app.component('DataTable', DataTable);
+
+// // Mount the Vue application to the #app element
+// app.mount('#app');

@@ -34,7 +34,7 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        $tracker = Project::findorFail($project_id);
+        $tracker = Project::findorFail($id);
         $validated = $request->validate([
             'suspension_date' => 'date|nullable',
             'resumption_date_resumed' => 'date|nullable',
@@ -46,7 +46,7 @@ class ActivityController extends Controller
             'end_of_contract_time' => 'date|nullable',
         ]);
 
-        $validated['project_id'] = $tracker->$project_id;
+        $validated['id'] = $tracker->$id;
 
         Project::create($validated);
         return Redirect::route('/home');

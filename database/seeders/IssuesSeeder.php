@@ -20,7 +20,7 @@ class IssuesSeeder extends Seeder
         $now = Carbon::now();
 
         // Fetch all project IDs
-        $projectIds = DB::table('projects')->pluck('project_id')->toArray();
+        $projectIds = DB::table('projects')->pluck('id')->toArray();
 
         // Ensure there are enough project IDs
         if (count($projectIds) < 10) {
@@ -34,6 +34,7 @@ class IssuesSeeder extends Seeder
                 'project_id' => $projectId,
                 'issue' => 'Issue No. ' . $counter,
                 'is_resolved' => True,
+                'created_by' => 1,
                 
             ];
             $counter++;

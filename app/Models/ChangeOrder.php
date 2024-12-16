@@ -11,13 +11,15 @@ class ChangeOrder extends Model
 
     protected $table = 'change_orders';
 
-    protected $primaryKey = 'change_order_id';
+    // protected $primaryKey = 'change_order_id';
 
     protected $fillable=[
         'project_id',
         'change_order_number',
         'amount',
         'notes',
+        'created_by', 
+        'updated_by', 
     ];
 
     protected $casts = [
@@ -27,6 +29,6 @@ class ChangeOrder extends Model
 
     public function project()
     {
-            return $this->belongsto(Project::class, 'project_id', 'project_id');
+            return $this->belongsto(Project::class, 'project_id');
     }
 }

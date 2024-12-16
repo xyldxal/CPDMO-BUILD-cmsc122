@@ -44,7 +44,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card" data-toggle="modal" data-target="#detailsModal{{ $tracker->id }}">
                     <div class="card-body">
-                        <h5 class="card-title">Project Name</h5>
+                        <h5 class="card-title">{{ $tracker->project_title ? $tracker->project_title : 'N/A' }}</h5>
                         <p class="card-text"><strong>Tracking number: </strong> {{ $tracker->tracking_number }}</p>
                         <p class="card-text"><strong>Status: </strong>{{ $tracker->proj_status }}</p>
                         <div class="card-text">

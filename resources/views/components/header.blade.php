@@ -3,6 +3,19 @@
 <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 
+<style>
+    .container-xl {
+        max-width: 100%;
+    }
+    .navbar {
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+    }
+    .main-wrapper {
+        min-height: 89vh;
+    }
+</style>
+
 <script>
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -36,11 +49,20 @@
                 link.classList.add('active');
             });
         });
+        document.getElementById('nav-dashboard').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent page reload
+            window.dispatchEvent(new CustomEvent('displayComponent', { detail: { component: 'dashboard' } }));
+        });
         document.getElementById('nav-ovcpd-progress-tracker').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent page reload
             // Emit an event with the component name
             window.dispatchEvent(new CustomEvent('displayComponent', { detail: { component: 'ovcpd-progress-tracker' } }));
             // storeValue('component', 'ovcpd-progress-tracker');
+        });
+        document.getElementById('nav-ovcpd-master-plan').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent page reload
+            // Emit an event with the component name
+            window.dispatchEvent(new CustomEvent('displayComponent', { detail: { component: 'ovcpd-master-plan' } }));
         });
         document.getElementById('nav-project').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent page reload
@@ -62,6 +84,10 @@
         document.getElementById('nav-terminated').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent page reload
             window.dispatchEvent(new CustomEvent('displayComponent', { detail: { component: 'terminated' } }));
+        });
+        document.getElementById('nav-about').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent page reload
+            window.dispatchEvent(new CustomEvent('displayComponent', { detail: { component: 'about' } }));
         });
     });
 
@@ -87,14 +113,12 @@
     
 </script>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0 py-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-0">
     <div class="container-xl">
-        <!-- Logo and Brand -->
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="{{ asset('images/build_white.png') }}" alt="BUILD Logo" class="navbar-logo">
-            <span class="ms-2">CPDMO BUILD</span>
-        </a>
-
+        <div class="d-flex align-items-center me-auto">
+            <img src="{{ asset('images/build-logo.png') }}" style="margin-right: 10px;" alt="BUILD" width="45" height="45" class="up-logo d-inline-block align-top">
+            <a class="navbar-brand fs-5" href="#">BUILD</a>
+        </div>
         <!-- Navbar toggle -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -102,16 +126,19 @@
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
         <!-- Nav -->
-            <div class="navbar-nav mx-lg-auto">
-                <a id='nav-ovcpd-progress-tracker' class="nav-item nav-link" href="#" aria-current="page">Project Progress Tracker</a>
+            <div class="navbar-nav me-auto fs-6">
+                <a id='nav-dashboard' class="nav-item nav-link" href="#">Dashboard</a>
+                <a id='nav-ovcpd-progress-tracker' class="nav-item nav-link" href="#" aria-current="page">Progress Tracker</a>
+                <a id='nav-ovcpd-master-plan' class="nav-item nav-link" href="#">Planning</a>
                 <a id='nav-project' class="nav-item nav-link" href="#">Projects</a>
-                <a id='nav-completed' class="nav-item nav-link" href="#">Completed</a>
-                <a id='nav-construction' class="nav-item nav-link" href="#">Construction</a>
-                <a id='nav-delayed' class="nav-item nav-link" href="#">Delayed</a>
-                <a id='nav-terminated' class="nav-item nav-link" href="#">Terminated</a>
+                <a id='nav-completed' class="nav-item nav-link" href="#" hidden>Completed</a>
+                <a id='nav-construction' class="nav-item nav-link" href="#" hidden>Construction</a>
+                <a id='nav-delayed' class="nav-item nav-link" href="#" hidden>Delayed</a>
+                <a id='nav-terminated' class="nav-item nav-link" href="#" hidden>Terminated</a>
+                <a id='nav-about' class="nav-item nav-link" href="#">ABOUT</a>
             </div>
             <div class="logout navbar-nav ms-lg-4">
-                <button onclick="logout()" class="btn btn-outline-light">LOGOUT</button>
+                <button onclick="logout()" class="btn btn-outline-light" style="padding: .255rem .75rem; padding-top: 0.315rem;">LOGOUT</button>
             </div>
         </div>
     </div>

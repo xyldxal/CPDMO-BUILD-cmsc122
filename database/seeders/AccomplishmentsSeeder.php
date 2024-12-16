@@ -23,7 +23,7 @@ class AccomplishmentsSeeder extends Seeder
         $now = Carbon::now();
 
         // Fetch all project IDs
-        $projectIds = DB::table('projects')->pluck('project_id')->toArray();
+        $projectIds = DB::table('projects')->pluck('id')->toArray();
 
         // Ensure there are enough project IDs
         if (count($projectIds) < 10) {
@@ -37,11 +37,11 @@ class AccomplishmentsSeeder extends Seeder
                 'project_id' => $projectId,
                 'as_of' => $now->copy()->addDays($counter)->toDateString(),
                 'notes' => 'Placeholder Notes ' . $counter,
-                'accomplishment_percentage' => rand(1,100),
+                'progress' => rand(1,100),
                 'accomplishment' => 'Accomplishment ' . $counter,
                 'slippage' => rand(200000,14000000) + ($counter * 1000),
                 'slippage_status' => 'Slippage Status ' . $counter,
-                
+                'created_by' => 1,
             ];
             $counter++;
         }

@@ -32,11 +32,11 @@ class AccomplishmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $project_id)
+    public function store(Request $request, $id)
     {
-        $tracker = Project::findorFail($project_id);
+        $tracker = Project::findorFail($id);
         $validated = $request->validate([
-            'accomplishment_percentage' => 'numeric|nullable|max:100',
+            'progress' => 'numeric|nullable|max:100',
             'accomplishment' => 'string|nullable|max:720',
             'slippage' => 'nullable|numeric|max:9999999999999.99',
             'slippage_status' => 'string|nullable|max:720',
@@ -44,7 +44,7 @@ class AccomplishmentController extends Controller
             'notes' => 'string|nullable|max:720'
         ]);
 
-        $validated['project_id'] = $tracker->$project_id;
+        $validated['id'] = $tracker->$id;
 
         Project::create($validated);
         return Redirect::route('/home');

@@ -23,7 +23,7 @@ class FundSourcesSeeder extends Seeder
         $now = Carbon::now();
 
         // Fetch all project IDs
-        $projectIds = DB::table('projects')->pluck('project_id')->toArray();
+        $projectIds = DB::table('projects')->pluck('id')->toArray();
 
         // Ensure there are enough project IDs
         if (count($projectIds) < 10) {
@@ -35,9 +35,10 @@ class FundSourcesSeeder extends Seeder
         foreach ($projectIds as $projectId) {
             $fund_sources[] = [
                 'project_id' => $projectId,
-                'fund_source' => 'Fund Source ' . $counter,
+                'fund_source_id' => rand(1, 10),
                 'is_funded' => True,
                 'notes' => 'Placeholder Notes ' . $counter,
+                'created_by' => 1,
                 
             ];
             $counter++;

@@ -63,7 +63,7 @@ class CSV_completed_projects_seeder extends Seeder
                         'project_title' => (empty($row[4]) || $row[4] === "_" || $row[4] === "--") ? NULL : $row[4],
                         'college_unit' => (empty($row[3]) || $row[3] === "_" || $row[3] === "--") ? NULL : $row[3],
                         'main_status' => 'COMPLETED',
-                        'project_in_charge' => (empty($row[29]) || $row[29] === "_" || $row[29] === "--") ? NULL : $row[29];
+                        'project_in_charge' => (empty($row[29]) || $row[29] === "_" || $row[29] === "--") ? NULL : $row[29],
                         'notice_of_award' => (empty($row[6]) || $row[6] === "_" || $row[6] === "--") ? NULL : $row[6],
                         'notice_to_proceed' => (empty($row[7]) || $row[7] === "_" || $row[7] === "--") ? NULL : $row[7],
                         'contract_duration' => (empty($row[8]) || $row[8] === "_" || $row[8] === "--") ? NULL : $row[8],
@@ -85,8 +85,8 @@ class CSV_completed_projects_seeder extends Seeder
             
         }
 
-        public function changeOrder(){
-            while
+        function changeOrder(){
+            // while
             foreach ($csvData as $rowIndex => $row) {
                 foreach ($row as $columnIndex => $column) {
                     // Output the row and column data

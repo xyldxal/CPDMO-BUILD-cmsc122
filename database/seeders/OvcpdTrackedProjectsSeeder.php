@@ -69,6 +69,7 @@ class OvcpdTrackedProjectsSeeder extends Seeder
                 // RELEASE OF RETENTION
                 'retention_bill_submission' => $now->addMonths(9),
                 'retention_bill_payment_received' => $now->addMonths(9),
+                'created_by' => 1,
             ];
         }
 

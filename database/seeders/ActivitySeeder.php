@@ -23,7 +23,7 @@ class ActivitySeeder extends Seeder
         $now = Carbon::now();
 
         // Fetch all project IDs
-        $projectIds = DB::table('projects')->pluck('project_id')->toArray();
+        $projectIds = DB::table('projects')->pluck('id')->toArray();
 
         // Ensure there are enough project IDs
         if (count($projectIds) < 10) {
@@ -44,6 +44,7 @@ class ActivitySeeder extends Seeder
                 'reason' => 'Reason ' . $counter,
                 'end_of_contract_time' => $now->copy()->addDays($counter)->toDateString(),
                 
+                'created_by' => 1,
                 
             ];
             $counter++;

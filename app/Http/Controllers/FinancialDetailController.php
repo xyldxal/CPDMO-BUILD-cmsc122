@@ -34,7 +34,7 @@ class FinancialDetailController extends Controller
      */
     public function store(Request $request)
     {
-        $tracker = Project::findorFail($project_id);
+        $tracker = Project::findorFail($id);
         $validated = $request->validate([
             'cost_of_completed_works' => 'nullable|numeric|max:9999999999999.99',
             'awarded' => 'nullable|numeric|max:9999999999999.99',
@@ -43,7 +43,7 @@ class FinancialDetailController extends Controller
             'notes' => 'string|nullable|max:720',
         ]);
 
-        $validated['project_id'] = $tracker->$project_id;
+        $validated['id'] = $tracker->$id;
 
         Project::create($validated);
         return Redirect::route('/home');

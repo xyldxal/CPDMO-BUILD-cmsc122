@@ -11,21 +11,23 @@ class Status extends Model
 
     protected $table = 'statuses';
 
-    protected $primaryKey = 'status_id';
+    // protected $primaryKey = 'status_id';
 
     protected $fillable=[
         'project_id',
         'as_of',
         'notes',
         'status',
+        'created_by', 
+        'updated_by', 
     ];
 
     protected $casts = [
-        'as_of' => 'datetime',
+        'as_of' => 'date',
     ];
 
     public function project()
     {
-            return $this->belongsto(Project::class, 'project_id', 'project_id');
+            return $this->belongsto(Project::class, 'project_id');
     }
 }

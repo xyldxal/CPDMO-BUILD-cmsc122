@@ -32,16 +32,16 @@ class ChangeOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $project_id)
+    public function store(Request $request, $id)
     {
-        $tracker = Project::findorFail($project_id);
+        $tracker = Project::findorFail($id);
         $validated = $request->validate([
             'change_order_number' => 'nullable|numeric|max:1000',
             'amount' => 'nullable|numeric|max:9999999999999.99',
             'notes' => 'string|nullable|max:720',
         ]);
 
-        $validated['project_id'] = $tracker->$project_id;
+        $validated['id'] = $tracker->$id;
 
         Project::create($validated);
         return Redirect::route('/home');

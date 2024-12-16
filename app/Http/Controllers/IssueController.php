@@ -32,15 +32,15 @@ class IssueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $project_id)
+    public function store(Request $request, $id)
     {
-        $tracker = Project::findorFail($project_id);
+        $tracker = Project::findorFail($id);
         $validated = $request->validate([
             'issue' => 'string|nullable|max:720',
             'is_resolved'=>'nullable|boolean',
         ]);
 
-        $validated['project_id'] = $tracker->$project_id;
+        $validated['id'] = $tracker->$id;
 
         Project::create($validated);
         return Redirect::route('/home');

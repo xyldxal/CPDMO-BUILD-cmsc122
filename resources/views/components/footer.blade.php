@@ -80,48 +80,100 @@ section, footer {
     
     color: #868c96;
 }
-
-footer p {
+footer {
+      
+      color: #fff;
+      padding: 2px 14px;
+      text-align: center;
+      background: #8D1536 !important;
+    }
+/* footer p {
     padding: 40px 0;
     text-align: center;
     background: #1A1E25;
     /* background-image: url('../images/footer-dark.png'); */
     /* position: relative;
-    z-index: 100000; */
+    z-index: 100000; 
+} */
+footer a {
+    color: yellow; /* Set the link color to blue */
+    text-decoration: none; /* Remove the underline */
 }
-
 footer img {
     padding: 0px 0;
     text-align: center;
     /* background: #1A1E25; */
     width: 44px;
+} */
+.sticky-footer-content {
+    position: sticky;
+    bottom: 0;  /* Stick to the bottom of the viewport */
+    background-color: #333;  /* Background color to match footer */
+    padding: 20px;  /* Padding for content */
+    z-index: 2;  /* Place above the footer image */
 }
 </style>
 
-<section class="contact-area" id="contact">
+
+<!-- =============== 1.9 Contact Area End ====================-->
+<!-- =============== 1.9 Footer Area Start ====================-->
+
+<footer>
+    <div class="sticky-footer-content"> <!-- This div will be sticky -->
+        <div class="row align-items-center"> 
+            <!-- Left Side: Copyright and Logo -->
+            <div class="col text-left">
+                <span>&copy; 2024 UP Manila Build Updates and Infrastructure Listings Database</span>
+            </div>
+
+            <!-- Center: Placeholder Logo -->
+            <div class="col text-center">
+                <img src="{{ asset('img/build-logo.png') }}" alt="UPManila Logo" width="auto" height="40">
+            </div>
+
+            <!-- Right Side: COR Seal and Privacy Policy -->
+            <div class="col text-right">
+                <div style="display: flex; align-items: center; justify-content: flex-end;">
+                    <a href="https://privacy.up.edu.ph" style="margin-left: 10px;">Privacy Policy</a>
+                    <img src="{{ asset('img/corseal_transparent.png') }}" alt="COR Seal" width="50" height="auto" class="cor-seal d-inline-block align-top">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Image -->
+    <div class="footer-image text-center mt-2">
+        <img src="{{ asset('images/footer-light-cropped.png') }}" alt="Footer IMAGE" style="width: 100%; z-index: 1;">
+    </div>
+</footer>
+
+  <!-- <<footer>
+  section class="contact-area" id="contact">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
                 <div class="contact-content text-center">
 
                     <div class="contact-social">
-                        <a>CPDMO - Build Updates and Infrastructure Listings Database [BUILD]</a>
-                        <!-- <ul>
+                        
+                        <ul>
                             <li><a class="hover-target" href=""><i class="fab fa-facebook-f"></i></a></li>
                             <li><a class="hover-target" href=""><i class="fab fa-linkedin-in"></i></a></li>
     
 
-                        </ul> -->
+                        </ul>
+                        <div style="text-align: center;">
+                            <a>CPDMO - Build Updates and Infrastructure Listings Database [BUILD]</a><br>
+                            <img src="{{ asset('img/corseal_transparent.png') }}" alt="COR Seal" width="70vh" height="auto" class="cor-seal d-inline-block align-top"><br>
+                            <a href="https://privacy.up.edu.ph">Privacy Policy</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<!-- =============== 1.9 Contact Area End ====================-->
-<!-- =============== 1.9 Footer Area Start ====================-->
-<footer>
-    <!-- <p>Copyright &copy; 2019 All Rights Reserved.</p> -->
+</section> 
+    <p>Copyright &copy; 2019 All Rights Reserved.</p>
     <img src="{{ asset('images/footer-light-cropped.png') }}" alt="Footer IMAGE" style="width: 100%; position: absolute; z-index: 1;">
-</footer
+</footer -->
 

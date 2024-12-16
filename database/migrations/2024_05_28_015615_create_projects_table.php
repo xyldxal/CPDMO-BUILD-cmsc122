@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->increments('project_id');
+            $table->increments('id');
 
             $table->string('tracking_number')->nullable();
 
@@ -22,13 +22,24 @@ return new class extends Migration
                 ->references('tracking_number')
                 ->on('ovcpd_tracked_projects')
                 ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onDelete('set null');
 
             $table->string('project_title')->nullable();
             $table->string('project_description')->nullable();
+            $table->integer('year')->nullable();
 
-            $table->string('college_unit')->nullable();
-            $table->string('main_status')->nullable();
+            $table->unsignedInteger('college_unit')->nullable();
+            $table->foreign('college_unit')
+                ->references('id')
+                ->on('c_colleges')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+            $table->unsignedInteger('main_status')->nullable();
+            $table->foreign('main_status')
+                ->references('id')
+                ->on('c_main_statuses')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
 
             $table->string('project_in_charge')->nullable();
 
@@ -37,13 +48,22 @@ return new class extends Migration
             $table->integer('additional_days')->nullable();
             $table->integer('contract_duration')->nullable();
 
-            $table->double('approved_budget')->nullable();
-            $table->double('bid_price_php')->nullable();
+            $table->decimal('approved_budget', 22, 2)->nullable();
+            $table->decimal('bid_price_php', 22, 2)->nullable();
 
-            $table->double('revised_contract_amount')->nullable();
+            $table->decimal('revised_contract_amount', 22, 2)->nullable();
             $table->date('original_date_of_completion')->nullable();
 
             $table->integer('remaining_number_of_days')->nullable();
+            
+            // User info and Timestamps
+            $table->integer('created_by');
+            $table->integer('updated_by')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+
+            $table->foreign('created_by')->references('id')->on('system_users')->cascadeOnUpdate()->default(1);
+            $table->foreign('updated_by')->references('id')->on('system_users')->cascadeOnUpdate();
         });
     }
 

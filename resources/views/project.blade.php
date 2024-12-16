@@ -26,10 +26,7 @@
         <!-- <a class="navbar-brand" href="#">
         <img src="https://preview.webpixels.io/web/img/logos/clever-light.svg" class="h-8" alt="...">
         </a> -->
-        <a class="navbar-brand" href="#">
-        <img src="{{ asset('images/build_white.png') }}" alt="BUILD" class="logo me-2" style="height: 40px;">
-        CPDMO BUILD
-        </a>
+        <a class="navbar-brand" href="#">CPDMO BUILD</a>
         <!-- Navbar toggle -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -82,7 +79,7 @@
 
 
     <div class="table-responsive">
-        <table class="table table-striped">
+        <table id="newProjects" class="table table-striped">
         <thead>
             <tr>
                 @foreach ($tracker_columns as $column)

@@ -11,21 +11,23 @@ class PaymentStatus extends Model
 
     protected $table = 'payment_statuses';
 
-    protected $primaryKey = 'payment_status_id';
+    // protected $primaryKey = 'payment_status_id';
 
     protected $fillable=[
         'project_id',
         'date',
         'notes',
-        'status'
+        'status',
+        'created_by', 
+        'updated_by', 
     ];
 
     protected $casts = [
-        'date' => 'datetime',
+        'date' => 'date',
     ];
 
     public function project()
     {
-            return $this->belongsto(Project::class, 'project_id', 'project_id');
+            return $this->belongsto(Project::class, 'project_id');
     }
 }

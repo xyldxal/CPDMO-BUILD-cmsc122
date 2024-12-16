@@ -20,7 +20,7 @@ class RecentUpdatesSeeder extends Seeder
         $now = Carbon::now();
 
         // Fetch all project IDs
-        $projectIds = DB::table('projects')->pluck('project_id')->toArray();
+        $projectIds = DB::table('projects')->pluck('id')->toArray();
 
         // Ensure there are enough project IDs
         if (count($projectIds) < 10) {
@@ -35,6 +35,7 @@ class RecentUpdatesSeeder extends Seeder
                 'credits' => 'Credit No. ' . $counter,
                 'date' => $now->copy()->addDays($counter)->toDateString(),
                 'notes' => 'Placeholder Notes ' . $counter,
+                'created_by' => 1,
                 
                 
             ];

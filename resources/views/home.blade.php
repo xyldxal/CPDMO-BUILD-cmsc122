@@ -10,6 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
+
 <!-- <link rel="stylesheet" href="{{ asset('css/login.css') }}"> -->
 {{-- <link rel="stylesheet" href="{{ asset('css/global.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -17,6 +18,8 @@
 <script>
     // Listen for events emitted by the child component
     window.addEventListener('DOMContentLoaded', function() {
+        
+        // console.log(@json($json_file_plan));
 
         function storeValue(key, value) {
             if (localStorage) {
@@ -34,7 +37,7 @@
             }
         }
 
-        console.log(getStoredValue('component'));
+        // console.log(getStoredValue('component'));
 
         if(getStoredValue('component')){
             // console.log('nav-'.concat(getStoredValue('component')));
@@ -54,7 +57,7 @@
             // console.log(getStoredValue('component'));
             const componentArgs = event.detail.args || {}; // Default to an empty object if args not provided
             const componentContainer = document.getElementById('component-container');
-            const components = ['ovcpd-progress-tracker', 'project', 'completed', 'construction', 'delayed', 'terminated'];
+            const components = ['dashboard', 'ovcpd-progress-tracker', 'ovcpd-master-plan', 'project', 'completed', 'construction', 'delayed', 'terminated', 'about'];
             // console.log(componentContainer.innerHTML);
             
             components.forEach(displayTable)
@@ -74,12 +77,21 @@
 </script>
 </head>
 
-<body>
+<body class="overflow-auto" style="min-width: 720px;">
     <x-header />
+    
 
-    <div class="main-wrapper">
+    <div id="app" class="main-wrapper mb-0 pb-0">
+        <div id="dashboard" style="display:none;">
+            <x-dashboard />
+        </div>
+
         <div id="ovcpd-progress-tracker"  style="display:none;">
-            <x-ovcpd-progress-tracker :tracker-columns="$tracker_columns" :project-trackers="$project_trackers" />
+            <x-ovcpd-progress-tracker :json-file="$json_file" :tracker-columns="$tracker_columns" :project-trackers="$project_trackers" />
+        </div>
+
+        <div id="ovcpd-master-plan"  style="display:none;">
+            <x-ovcpd-master-plan :tracker-columns="$tracker_columns" :project-trackers="$project_trackers" :json-file="$json_file_plan" />
         </div>
     
     
@@ -92,21 +104,24 @@
         
         
         <div id="completed" style="display:none;">
-        
         </div>
+
         <div id="construction" style="display:none;">
-        
+            <x-ongoing-projects />
         </div>
+
         <div id="delayed" style="display:none;">
-        
         </div>
-        <div id="terminated" style="display:none;">
-            
+
+        <div id="terminated" style="display:none;">    
+        </div>
+
+        <div id="about" style="display:none;">
+            <x-about />
         </div>
     </div>
     
 
     <x-footer/>
-
 
 </body>

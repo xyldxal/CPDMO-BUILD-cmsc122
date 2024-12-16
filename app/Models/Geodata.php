@@ -11,16 +11,18 @@ class Geodata extends Model
 
     protected $table = 'geodata';
 
-    protected $primaryKey = 'geodata_id';
+    // protected $primaryKey = 'geodata_id';
 
     protected $fillable=[
         'project_id',
         'longitude',
         'latitude',
+        'created_by', 
+        'updated_by', 
     ];
 
     public function project()
     {
-            return $this->belongsto(Project::class, 'project_id', 'project_id');
+            return $this->belongsto(Project::class, 'project_id');
     }
 }

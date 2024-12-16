@@ -11,12 +11,14 @@ class Issue extends Model
 
     protected $table = 'issues';
 
-    protected $primaryKey = 'issue_id';
+    // protected $primaryKey = 'issue_id';
 
     protected $fillable=[
         'project_id',
         'issue',
         'is_resolved',
+        'created_by', 
+        'updated_by', 
     ];
 
     protected $casts = [
@@ -25,6 +27,6 @@ class Issue extends Model
 
     public function project()
     {
-            return $this->belongsto(Project::class, 'project_id', 'project_id');
+            return $this->belongsto(Project::class, 'project_id');
     }
 }

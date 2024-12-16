@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('recent_updates', function (Blueprint $table) {
-            $table->increments('recent_update_id');
+            $table->increments('id');
             $table->unsignedInteger('project_id');
 
             $table->foreign('project_id')
-                ->references('project_id')
+                ->references('id')
                 ->on('projects')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
@@ -26,7 +26,15 @@ return new class extends Migration
             $table->string('credits')->nullable();
             $table->date('date')->nullable();
             $table->string('notes')->nullable();
+            
+            // User info and Timestamps
+            $table->integer('created_by');
+            $table->integer('updated_by')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
 
+            $table->foreign('created_by')->references('id')->on('system_users')->cascadeOnUpdate()->default(1);
+            $table->foreign('updated_by')->references('id')->on('system_users')->cascadeOnUpdate();
         });
     }
 

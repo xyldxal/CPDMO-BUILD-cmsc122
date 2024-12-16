@@ -34,14 +34,14 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        $tracker = Project::findorFail($project_id, $project_id);
+        $tracker = Project::findorFail($id, $id);
         $validated = $request->validate([
             'as_of' => 'date|nullable',
             'notes' => 'string|nullable|max:720',
             'status' => 'string|nullable|max:720',
         ]);
 
-        $validated['project_id'] = $tracker->$project_id;
+        $validated['id'] = $tracker->$id;
 
         Project::create($validated);
         return Redirect::route('/home');

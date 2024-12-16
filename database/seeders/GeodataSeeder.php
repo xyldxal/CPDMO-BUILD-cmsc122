@@ -23,7 +23,7 @@ class GeodataSeeder extends Seeder
         $now = Carbon::now();
 
         // Fetch all project IDs
-        $projectIds = DB::table('projects')->pluck('project_id')->toArray();
+        $projectIds = DB::table('projects')->pluck('id')->toArray();
 
         // Ensure there are enough project IDs
         if (count($projectIds) < 10) {
@@ -37,6 +37,7 @@ class GeodataSeeder extends Seeder
                 'project_id' => $projectId,
                 'latitude' => 'Latitude ' . mt_rand(-9000, 9000) / 100,
                 'longitude' => 'Longitude ' . mt_rand(-18000, 18000) / 100,
+                'created_by' => 1,
                 
             ];
             $counter++;

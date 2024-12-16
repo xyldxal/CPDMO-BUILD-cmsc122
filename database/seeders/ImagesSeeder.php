@@ -20,7 +20,7 @@ class ImagesSeeder extends Seeder
         $now = Carbon::now();
 
         // Fetch all project IDs
-        $projectIds = DB::table('projects')->pluck('project_id')->toArray();
+        $projectIds = DB::table('projects')->pluck('id')->toArray();
 
         // Ensure there are enough project IDs
         if (count($projectIds) < 10) {
@@ -33,6 +33,7 @@ class ImagesSeeder extends Seeder
             $image_source[] = [
                 'project_id' => $projectId,
                 'image_source' => 'www.sampleimagelink.com/file=?' . rand(200000,14000000) . '.jpeg/view=true',
+                'created_by' => 1,
             ];
             $counter++;
         }

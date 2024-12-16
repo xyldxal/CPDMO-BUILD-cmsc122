@@ -11,21 +11,23 @@ class RecentUpdate extends Model
 
     protected $table = 'recent_updates';
 
-    protected $primaryKey = 'recent_update_id';
+    // protected $primaryKey = 'recent_update_id';
 
     protected $fillable=[
         'project_id',
         'credits',
         'date',
         'notes',
+        'created_by', 
+        'updated_by', 
     ];
 
     protected $casts = [
-        'date' => 'datetime',
+        'date' => 'date',
     ];
 
     public function project()
     {
-            return $this->belongsto(Project::class, 'project_id', 'project_id');
+            return $this->belongsto(Project::class, 'project_id');
     }
 }

@@ -14,20 +14,29 @@ return new class extends Migration
     public function up()
     {
         Schema::create('financial_details', function (Blueprint $table) {
-            $table->increments('financial_detail_id');
+            $table->increments('id');
             $table->unsignedInteger('project_id');
 
             $table->foreign('project_id')
-                ->references('project_id')
+                ->references('id')
                 ->on('projects')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->double('cost_of_completed_works')->nullable();
-            $table->double('cost_of_remaining_projects')->nullable();
-            $table->double('liquidated_damages_booked')->nullable();
-            $table->double('total_billed_variation_orders')->nullable();
+            $table->decimal('cost_of_completed_works', 22, 2)->nullable();
+            $table->decimal('cost_of_remaining_projects', 22, 2)->nullable();
+            $table->decimal('liquidated_damages_booked', 22, 2)->nullable();
+            $table->decimal('total_billed_variation_orders', 22, 2)->nullable();
             $table->string('notes')->nullable();
+            
+            // User info and Timestamps
+            $table->integer('created_by');
+            $table->integer('updated_by')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+
+            $table->foreign('created_by')->references('id')->on('system_users')->cascadeOnUpdate()->default(1);
+            $table->foreign('updated_by')->references('id')->on('system_users')->cascadeOnUpdate();
         });
     }
 

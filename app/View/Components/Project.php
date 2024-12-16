@@ -14,6 +14,7 @@ class Project extends Component
 
     public function __construct($jsonFile, $projectHeaders){
         $this->jsonFile=json_decode($jsonFile, true);
+        // $this->jsonFile=$jsonFile;
         $this->projectHeaders=$projectHeaders;
         // dd($this->$jsonFile);
     }

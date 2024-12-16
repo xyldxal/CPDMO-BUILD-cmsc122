@@ -23,9 +23,9 @@ class SystemUser extends Authenticatable
         'token', 
         // 'provider_id',
         'provider_token',
-        'unit', 
-        // 'updated_at', 
-        // 'created_at',
+        'unit',
+        'created_by', 
+        'updated_by', 
     ];
 
     protected $hidden = [
@@ -34,8 +34,8 @@ class SystemUser extends Authenticatable
     ];
 
     protected $casts = [
-        'updated_at' => 'datetime',
-        'created_at' => 'datetime',
+        'updated_at' => 'date',
+        'created_at' => 'date',
         // 'password' => 'hashed',
     ];
     

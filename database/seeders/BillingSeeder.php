@@ -23,7 +23,7 @@ class BillingSeeder extends Seeder
         $now = Carbon::now();
 
         // Fetch all project IDs
-        $projectIds = DB::table('projects')->pluck('project_id')->toArray();
+        $projectIds = DB::table('projects')->pluck('id')->toArray();
 
         // Ensure there are enough project IDs
         if (count($projectIds) < 10) {
@@ -44,6 +44,7 @@ class BillingSeeder extends Seeder
                 'as_of' => $now->copy()->addDays($counter)->toDateString(),
                 'notes' => 'Placeholder Note ' . $counter,
                 
+                'created_by' => 1,
             ];
             $counter++;
             

@@ -20,7 +20,7 @@ class StatusSeeder extends Seeder
         $now = Carbon::now();
 
         // Fetch all project IDs
-        $projectIds = DB::table('projects')->pluck('project_id')->toArray();
+        $projectIds = DB::table('projects')->pluck('id')->toArray();
 
         // Ensure there are enough project IDs
         if (count($projectIds) < 10) {
@@ -35,6 +35,7 @@ class StatusSeeder extends Seeder
                 'as_of' => $now->copy()->addDays($counter)->toDateString(),
                 'notes' => 'Placeholder Notes ' . $counter,
                 'status' => 'Status No. ' . $counter,
+                'created_by' => 1,
                 
                 
             ];
