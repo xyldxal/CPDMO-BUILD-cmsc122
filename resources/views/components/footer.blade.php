@@ -112,68 +112,203 @@ footer img {
     padding: 20px;  /* Padding for content */
     z-index: 2;  /* Place above the footer image */
 }
+
+.footer-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer {
+        position: relative;
+        width: 100%;
+        background-color: #8A1538;
+        color: white;
+        font-family: 'Lato', sans-serif;
+        height: 150px;
+    }
+
+    .footer-background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: scale-down;
+        object-position: bottom;
+        bottom: -1px;
+        transform: scale(0.7);
+        transform-origin: bottom;
+    }
+
+    .footer-content {
+        position: relative;
+        height: 100%;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5% 4%;
+        margin-top: -0.5rem;
+    }
+
+    .footer-left {
+        max-width: 25%;
+        text-align: justify;
+    }
+
+    .footer-address-container, .footer-email-container {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .footer-icon {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+        margin-top: 0.4rem;
+    }
+
+    .footer-email-icon {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+    }
+
+    .footer-address {
+        font-size: clamp(0.7rem, 1vw, 0.8rem);
+        line-height: 1.8;
+        flex: 1;
+        margin: 0;
+    }
+
+    .footer-email {
+        font-size: clamp(0.7rem, 1vw, 0.8rem);
+        color: white;
+        text-decoration: none;
+        display: block;
+        text-align: justify;
+        line-height: 1.8;
+        margin: 0;
+        flex: 1;
+    }
+
+    .footer-email-container {
+        margin-top: 0.2rem;
+    }
+
+    .footer-center {
+        position: absolute;
+        left: 50%;
+        top: 37.5%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        width: 22%;
+        max-width: 250px;
+        min-width: 140px;
+    }
+
+    .footer-main-logo {
+        width: 100%;
+        height: auto;
+    }
+
+    .footer-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        max-width: 30%;
+        margin-top: 0.5rem;
+    }
+
+    .footer-logo {
+        width: clamp(60px, 6vw, 80px);
+        height: auto;
+    }
+
+    .privacy-policy-btn {
+        background: none;
+        border: none;
+        color: #ffc107;
+        cursor: pointer;
+        padding: 0.2rem;
+        font-size: clamp(0.7rem, 1vw, 0.8rem);
+    }
+
+    .privacy-policy-btn:hover {
+        color: white;
+    }
+
+    .footer-copyright {
+        background-color: #004225;
+        color: white;
+        text-align: center;
+        padding: 0.75rem;
+        font-size: clamp(0.8rem, 1vw, 0.9rem);
+    }
+
+    @media (max-width: 768px) {
+        .footer {
+            height: auto;
+            min-height: 400px;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem 1rem;
+            align-items: center;
+            margin-top: 0;
+        }
+
+        .footer-left, .footer-right {
+            max-width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .footer-center {
+            position: relative;
+            transform: translateX(-50%);
+            margin: 1rem 0;
+        }
+
+        .footer-right {
+            margin-top: 0;
+        }
+    }
+
 </style>
 
-
-<!-- =============== 1.9 Contact Area End ====================-->
-<!-- =============== 1.9 Footer Area Start ====================-->
-
-<footer>
-    <div class="sticky-footer-content"> <!-- This div will be sticky -->
-        <div class="row align-items-center"> 
-            <!-- Left Side: Copyright and Logo -->
-            <div class="col text-left">
-                <span>&copy; 2024 UP Manila Build Updates and Infrastructure Listings Database</span>
-            </div>
-
-            <!-- Center: Placeholder Logo -->
-            <div class="col text-center">
-                <img src="{{ asset('img/build-logo.png') }}" alt="UPManila Logo" width="auto" height="40">
-            </div>
-
-            <!-- Right Side: COR Seal and Privacy Policy -->
-            <div class="col text-right">
-                <div style="display: flex; align-items: center; justify-content: flex-end;">
-                    <a href="https://privacy.up.edu.ph" style="margin-left: 10px;">Privacy Policy</a>
-                    <img src="{{ asset('img/corseal_transparent.png') }}" alt="COR Seal" width="50" height="auto" class="cor-seal d-inline-block align-top">
+<div class="footer-wrapper">
+    <div class="footer">
+        <img src="{{ asset('images/footer-red.png') }}" alt="Footer Background" class="footer-background">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-address-container">
+                    <img src="{{ asset('images/address.png') }}" alt="Address Icon" class="footer-icon">
+                    <p class="footer-address">
+                        Campus Planning Development and Maintenance Office<br>
+                        (CPDMO), UP Manila, Padre Faura Street, Ermita, Manila<br>
+                    </p>
                 </div>
+                <div class="footer-email-container">
+                    <img src="{{ asset('images/mail.png') }}" alt="Email Icon" class="footer-email-icon">
+                    <a href="mailto:upm-cpdmo@up.edu.ph" class="footer-email">upm-cpdmo@up.edu.ph</a>
+                </div>
+            </div>
+            <div class="footer-center">
+                <img src="{{ asset('images/footer-logo.png') }}" alt="BUILD Logo" class="footer-main-logo">
+            </div>
+            <div class="footer-right">
+                <img src="{{ asset('img/corseal_transparent.png') }}" alt="DPO Seal" class="footer-logo">
+                <a href="https://privacy.up.edu.ph" class="privacy-policy-btn">Privacy Policy</a>
             </div>
         </div>
     </div>
-
-    <!-- Footer Image -->
-    <div class="footer-image text-center mt-2">
-        <img src="{{ asset('images/footer-light-cropped.png') }}" alt="Footer IMAGE" style="width: 100%; z-index: 1;">
+    <div class="footer-copyright">
+        &copy; Copyright 2024. UP Manila Build Updates and Infrastructure Listings Database.
     </div>
-</footer>
-
-  <!-- <<footer>
-  section class="contact-area" id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 offset-lg-3">
-                <div class="contact-content text-center">
-
-                    <div class="contact-social">
-                        
-                        <ul>
-                            <li><a class="hover-target" href=""><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a class="hover-target" href=""><i class="fab fa-linkedin-in"></i></a></li>
-    
-
-                        </ul>
-                        <div style="text-align: center;">
-                            <a>CPDMO - Build Updates and Infrastructure Listings Database [BUILD]</a><br>
-                            <img src="{{ asset('img/corseal_transparent.png') }}" alt="COR Seal" width="70vh" height="auto" class="cor-seal d-inline-block align-top"><br>
-                            <a href="https://privacy.up.edu.ph">Privacy Policy</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> 
-    <p>Copyright &copy; 2019 All Rights Reserved.</p>
-    <img src="{{ asset('images/footer-light-cropped.png') }}" alt="Footer IMAGE" style="width: 100%; position: absolute; z-index: 1;">
-</footer -->
-
+</div>
