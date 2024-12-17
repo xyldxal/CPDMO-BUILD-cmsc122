@@ -10,14 +10,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $user[] = [
-            'id' => 1,
-            'email' => 'jgbuenaventura@up.edu.ph',
-            'username' => 'PrinceOfTheSilverWind64',
-            'token' => '47130110150220053410',
-            'unit' => 'ADMIN'
-        ];
-        DB::table('system_users')->insert($user);
 
         // Call the ActivitySeeder
         $this->call(CSourcesSeeder::class);
