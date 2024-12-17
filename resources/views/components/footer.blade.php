@@ -243,8 +243,8 @@ footer img {
         background-color: #004225;
         color: white;
         text-align: center;
-        padding: 0.75rem;
-        font-size: clamp(0.8rem, 1vw, 0.9rem);
+        padding: 0.4rem;
+        font-size: clamp(0.4rem, 0.4vw, 0.9rem);
     }
 
     @media (max-width: 768px) {
