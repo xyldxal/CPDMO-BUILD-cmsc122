@@ -1,19 +1,9 @@
-require('./bootstrap');
-require('datatables.net-dt');
+import './bootstrap';
+import { createApp } from 'vue/dist/vue.esm-bundler.js';
+import Projects from './components/Projects.vue';
+import AddEntryForm from './components/AddEntryForm.vue';
 
-// import { createApp } from 'vue';
-// import App from './App.vue';
-// import DataTable from 'datatables.net-vue3';
-// import DataTablesCore from 'datatables.net-dt';
-
-// // Use DataTables core with DataTable component
-// DataTable.use(DataTablesCore);
-
-// // Create the Vue application
-// const app = createApp(App);
-
-// // Register the DataTable component globally
-// app.component('DataTable', DataTable);
-
-// // Mount the Vue application to the #app element
-// app.mount('#app');
+const app = createApp({});
+app.component('projects', Projects);
+app.component('add-entry-form', AddEntryForm);
+app.mount('#app');

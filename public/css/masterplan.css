@@ -79,7 +79,7 @@ font-size: 14px;
     flex-wrap: wrap;
     align-content: flex-start;
     margin-top: 20px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Avenir';
     font-style: normal;
     font-weight: 300;
     /* font-smoothing: antialiased; */
@@ -104,75 +104,167 @@ font-size: 14px;
 .modal {
     display: none;
     position: fixed;
-    /* z-index: 100; */
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.7);
+    background: none;
 }
+
 .modal-main {
+    background: none;
+    margin: 4vh auto 0 auto;
+    padding: 20px;
+    border: 0px solid #888;
+    border-radius: 10px 10px 0 0;
+    width: 80%;
+}
+
+.modal-title {
     color: #fff;
     font-size: 42px;
     background-color: #8A1538;
     margin: 4vh auto 0 auto;
     padding: 20px;
     border: 0px solid #888;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0 0;
     width: 80%;
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: white;
     margin: 0 auto 20px auto;
     padding: 20px;
     border: 0px solid #888;
-    border-radius: 0px 0px 5px 5px;
     width: 80%;
+    max-width: 1200px;
+    position: relative;
+    border-radius: 8px;
 }
 
 .close {
-    color: #fff;
+    color: #ffffff;
     float: right;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: bold;
+    margin-right: 10px;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    text-decoration: none;
 }
 
 .close:hover,
 .close:focus {
-    color: white;
-    text-decoration: none;
+    opacity: 1;
     cursor: pointer;
+    transform: scale(1.1);
 }
+
 input[type="text"],
 input[type="date"],
 input[type="number"],
 input[type="email"],
 textarea {
-    border: 1px solid #ccc; /* Light gray border */
-    color: #555; /* Light gray text color */
-    padding: 8px;
-    border-radius: 4px; /* Optional: rounded corners */
+    border: 1px solid #ccc;
+    color: #555;
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
 }
 
-/* Style the placeholder text */
-input::placeholder,
-textarea::placeholder {
-    color: #a9a9a9; /* Light gray placeholder text */
-    opacity: 1; /* Make sure the placeholder is fully visible */
-}
-
-/* Style the input boxes on focus */
 input[type="text"]:focus,
 input[type="date"]:focus,
 input[type="number"]:focus,
 input[type="email"]:focus,
 textarea:focus {
-    outline: none; /* Remove default focus outline */
-    border-color: #999; /* Darker gray border when focused */
+    outline: none;
+    border-color: #004d25;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+.nav-tabs {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    margin: -20px -20px 20px -20px;
+    width: calc(100% + 40px);
+}
+
+.nav-tabs .nav-link {
+    color: white;
+    background: #004d25;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: all 0.1s;
+    flex: 1;
+    text-align: center;
+    transform-origin: bottom;
+}
+
+.nav-tabs .nav-link:hover {
+    background: #003d1e;
+    color: #FFD700;
+    border: none;
+    transform: translateY(-1px) scale(1.05);
+    z-index: 1;
+}
+
+.nav-tabs .nav-link.active {
+    background: #003d1e;
+    color: #FFD700;
+    font-weight: bold;
+    border: none;
+    transform: translateY(-2px) scale(1.1);
+    z-index: 2;
+}
+
+.main-tabs {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0 15px;
+}
+
+.main-tabs .nav-tabs {
+    border: none;
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.main-tabs .nav-link {
+    color: #333;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.main-tabs .nav-link:hover {
+    background: #003d1e;
+    color: #FFD700;
+    transform: translateY(-1px) scale(1.05);
+}
+
+.main-tabs .nav-link.active {
+    background: #002c15;
+    color: #FFD700;
+    font-weight: bold;
+    transform: translateY(-2px) scale(1.1);
+}
+
 .flash-message {
     display: none;
     position: fixed;
@@ -186,4 +278,31 @@ textarea:focus {
 #bulk-upload-hook a{
     cursor: pointer;
     color: blue;
+}
+
+.modal-content form > div:last-child {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-success {
+    font-family: 'Avenir';
+    background: #005127;
+    color: white;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+    margin: 0 auto;
+    min-width: 120px;
+    margin-top: 10px;
+    margin-left: 510px;
+    align-items: center;
+}
+
+.btn-success:hover {
+    background: #00160b;
+    transform: translateY(-1px);
 }

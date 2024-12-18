@@ -1,13 +1,7 @@
-require('./bootstrap');
+import './bootstrap'
+import { createApp } from 'vue'
+import Projects from './resources/js/components/Projects.vue'
 
-
-import { createApp } from 'vue';
-import ProgressTracker from './components/ProgressTracker.vue';
-import FormTemplate from './components/FormTemplate.vue';
-
-const app = createApp({});
-
-app.component('progress-tracker', ProgressTracker);
-app.component('form-template', FormTemplate)
-
-app.mount('#app');
+const app = createApp({})
+app.component('projects', Projects)
+app.mount('#app')
