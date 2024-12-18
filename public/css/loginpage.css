@@ -1,224 +1,229 @@
 body {
     margin: 0;
-    font-family: 'Avenir', sans-serif !important;
+    font-family: 'Lato', sans-serif;
+    height: 100vh;
     overflow: hidden;
     background-color: #8D1536;
-    position: relative; /* Ensure the body is relative for absolute positioning */
+    position: relative;
 }
 
 body::before {
     content: '';
     position: absolute;
-    top: 0; /* Position at the top of the body */
-    left: 0;
-    width: 100%; /* Cover the entire viewport */
-    height: 100%; /* Adjust the height as needed */
-    background-image: url('/images/foreground.png'); /* Adjust the path to your image */
-    background-position: center; /* Center the image within the element */
-    background-repeat: no-repeat; /* Prevent tiling */
-    background-size: cover; /* Ensure the image covers the entire element */
-    z-index: -1; /* Place behind other content */
-}
-
-
-
-.container{
-    position: relative;
-    width: 100%;
-    min-height: 100vm;
-
-}
-
-
-.title{
-    font-weight: 600;
-    margin: 0;
-    color: white;
-    font-size: 3rem;
-    margin-bottom: -10px !important;
-}
-
-h2 {
-    font-size: 2rem !important;
-    font-weight: 600;
-}
-
-.background {
-    content: '';
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background-image: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     z-index: -1;
-    position: fixed;
-    background-color: transparent !important;
-  }
+}
 
-.card-container {
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-left:7.5%;
+}
+
+.container-fluid > .row {
     width: 100%;
-    max-width: 450px;
-    background-color: rgba(248, 248, 248, 1);
-    border-radius: 12px;
-    padding: 20px;
-    color: #fff;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }
 
-.form-group {
-    margin-bottom: 1rem; /* Space between form groups */
+.col-lg-6 {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
 
-/* Input field styling (optional, if needed) */
-.input-field, .input-field:hover {
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
-    color: #000000;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+.col-lg-6:first-child {
+    justify-content: flex-end;
 }
 
-.input-field::placeholder {
-    color: #7c7c7c !important;
+.col-lg-6:last-child {
+    justify-content: flex-start;
 }
 
-.input-field:focus {
-    border-color: #00573f;
-    box-shadow: 0 0 5px rgba(0, 44, 31, 0.25) !important;
-    color: #121212 !important;
+.login-content {
+    width: 100%;
+    max-width: 800px;
+    padding: 40px 60px;
+    background-color: rgba(255, 255, 255, 0.98);
+    border-radius: 10px;
+    box-shadow: -10px 10px 30px rgba(20, 88, 3, 0.527),
+                0 5px 15px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
 }
 
-.btn-primary {
-    background-color: #00573f;
-    border-color: #00573f;
-    color: #fff;
-    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+.col-lg-6.d-none {
+    padding: 0;
+    width: 45%;
+    display: flex;
+    justify-content: flex-start;
 }
 
-.btn-primary:hover {
-    background-color: #002c1f;
-    border-color: #002c1f;
+.bg-image {
+    width: 64%;
+    height: 100vh !important;
+    background-size: contain !important;
+    background-position: left center !important;
+    filter: drop-shadow(10px 10px 10px rgba(7, 83, 4, 0.705));
 }
 
-.btn-primary:focus, .btn-primary.focus {
-    background-color: #002c1f !important;
-    border-color: #002c1f !important;
-    box-shadow: none !important;
+.login-form {
+    margin-top: 25px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
-    background-color: #00573f;
-    border-color: #002c1f;
+h5 {
+    color: #333;
+    font-size: 1rem;  /* Increased from 0.8rem */
+    letter-spacing: 2px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    padding: 0 1rem;
 }
 
-.btn-primary:active:focus, .btn-primary:active.focus {
+.green-divider {
+    width: 100px;
+    height: 3px;
+    background-color: #00573F;
+    margin: 15px auto 25px;
+}
+
+h2 {
+    color: #333;
+    font-size: 2.5rem !important;  /* Increased from 2rem */
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-control {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 12px 15px;
+    height: auto;
+    font-size: 1.2rem;  /* Increased from 1rem */
+    max-width: 100%;
+}
+
+.form-control:focus {
+    border-color: #00573F;
     box-shadow: none;
 }
 
-
-/* Small style for form options */
-.form-options {
-    font-size: 0.875rem !important; /* Adjust font size */
+.btn-primary {
+    background-color: #00573F;
+    border-color: #00573F;
+    padding: 0.75rem;
+    font-weight: 600;
+    font-size: 1.2rem;  /* Increased from 1rem */
 }
 
-.form-check-label.small {
-    font-size: 0.875rem !important; /* Adjust font size */
+.btn-primary:hover {
+    background-color: #004030;
+    border-color: #004030;
 }
 
-.forgot-password.small {
-    font-size: 0.875rem !important; /* Adjust font size */
-    color: #00573f !important; /* Adjust link color */
-    position: relative; /* Ensure positioning context for pseudo-element */
-    transition: color 0.3s; /* Smooth transition for color change */
+.form-check-label {
+    color: #666;
+    font-size: 1.1rem;  /* Increased from 0.9rem */
 }
 
-.forgot-password.small::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: 0;
-    left: 0;
-    background-color: #00573f; /* Initial underline color */
-    transition: width 0.3s ease-in-out; /* Animation for underline */
+.forgot-link {
+    color: #00573F;
+    font-size: 1.1rem;  /* Increased from 0.9rem */
+    text-decoration: none;
 }
 
-.forgot-password.small:hover::before {
-    width: 100%; /* Full width of the link on hover */
-}
-
-.forgot-password.small:focus {
-    color: #002c1f !important; /* Adjust link color on focus */
+.forgot-link:hover {
+    color: #011611;
     text-decoration: underline;
-    outline: none;
 }
 
 .divider {
+    text-align: center;
     margin: 20px 0;
-    font-size: 14px;
-    color: #565656;
-}
-/* Button styling */
-.google-login {
-    background-color: transparent !important; /* Transparent background */
-    border: none !important; /* No border */
-    color: #00573f !important; /* Main color for text */
-    transition: color 0.3s;
-    font-size: 14px; /* Adjust font size as needed */
-    text-decoration: none !important; /* Remove default link underline */
-    display: inline-block; /* Ensures inline display */
-    cursor: pointer; /* Pointer cursor */
+    position: relative;
 }
 
-.google-login:hover {
-    color: #002c1f !important; /* Darker color on hover */
-    background-color: transparent !important;
+.divider:before,
+.divider:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: #ddd;
 }
 
-.google-login:focus, .google-login.focus {
-    color: #00573f !important; /* Darker color on hover */
-    background-color: transparent !important;
+.divider:before {
+    left: 0;
 }
 
-
-label {
-    font-weight: bold;
-    color: #495057; /* Text color */
-    margin-bottom: 0.5rem; /* Spacing below the label */
-    display: block; /* Ensures labels are on their own line */
+.divider:after {
+    right: 0;
 }
 
-.subtitle {
-    text-align: center; /* Center align the text */
-    color: #000000; /* Example: Adjust text color as needed */
-    font-size: 1.5rem; /* Example: Adjust font size as needed */
+.divider span {
+    padding: 0 10px;
+    color: #666;
+    font-size: 1.1rem;  /* Increased from 0.9rem */
 }
 
-.subhead {
-    text-align: center; /* Center align the text */
-    color: #ffffff; /* Example: Adjust text color as needed */
-    font-size: 1.2rem !important; /* Example: Adjust font size as needed */
-    font-weight: 400;
-    margin: 0;
+.google-btn {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    font-size: 1.15rem;  /* Increased from 0.95rem */
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
+.google-btn:hover {
+    background-color: #f8f8f8;
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
+
+img.mb-3 {
+    width: 275px !important;
+    margin-bottom: 2.5rem !important;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-options {
+    margin: 1.5rem 0;
+}
 
 /* Media query for mobile devices */
 @media (max-width: 768px) {
-    body::before {
-        /* Adjust background size and positioning for mobile */
-        height: 100%; /* Ensure it covers the full height */
+    body {
+        height: 100%;
     }
 
-    .title {
-        font-size: 2rem; /* Adjust title font size for smaller screens */
-        margin-bottom: 10px;
-    }
-
-    h2 {
-        font-size: 1.5rem !important; /* Adjust heading font size for smaller screens */
-    }
-
-    .card-container {
-        max-width: 95%; /* Ensure cards expand to full width on smaller screens */
+    .login-content {
+        max-width: 95%;
     }
 }
