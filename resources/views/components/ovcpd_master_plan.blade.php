@@ -5,7 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="{{ asset('css/masterplan.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/masterplan.css') }}");
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- DataTables CSS -->
@@ -17,28 +17,34 @@
 </head>
 
 <div>
-    <div class="mt-5">
-        <!-- <div class="mb-4 text-center">
-            <h3 class="mb-2">All Projects</h3>
-            <p>CPDMO BUILD</p>
-        </div> -->
-        <header class="cd__intro w-100 d-flex align-items-center justify-content-between">
-            <h1 class="text-nowrap ml-2">Master Development Plan</h1>
-            <div class="" >
-                <button class="btn btn-success btn-add-plan mr-1" id="add-button">Add Entry</button>
-                <button type="button" class="btn btn-primary btn-bulk btn-bulk-plan">
-                    <i class="fas fa-file-import"></i>
-                </button>
-            </div>
-        </header>
-        <div class="w-100 pt-0 pr-3">
-                <table id="7324bc4d609c6acab008c8b90fd03a45bfad3218" class="display table table-striped text-nowrap " style="width:100%">
-                    <thead>
-                    </thead>
-                    <tbody id="form-body-ajax">
-                    </tbody>
-                </table>
+    <header class="cd__intro w-100 d-flex align-items-center justify-content-between">
+        <h1 class="text-nowrap ml-2">Master Development Plan</h1>
+        <div class="" >
+            <button class="btn btn-success btn-add-plan mr-1" id="add-button">Add Entry</button>
+            <button type="button" class="btn btn-primary btn-bulk btn-bulk-plan">
+                <i class="fas fa-file-import"></i>
+            </button>
         </div>
+    </header>
+    <div class="main-tabs">
+        <div class="nav nav-tabs" id="main-nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-details-main-tab" data-bs-toggle="tab" data-bs-target="#nav-details-main" type="button" role="tab" aria-controls="nav-details-main" aria-selected="true">Project Details</button>
+            <button class="nav-link" id="nav-plan-design-main-tab" data-bs-toggle="tab" data-bs-target="#nav-plan-design-main" type="button" role="tab">Planning and Design</button>
+            <button class="nav-link" id="nav-bac-main-tab" data-bs-toggle="tab" data-bs-target="#nav-bac-main" type="button" role="tab">BAC</button>
+            <button class="nav-link" id="nav-procurement-main-tab" data-bs-toggle="tab" data-bs-target="#nav-procurement-main" type="button" role="tab">Procurement</button>
+            <button class="nav-link" id="nav-implementation-main-tab" data-bs-toggle="tab" data-bs-target="#nav-implementation-main" type="button" role="tab">Implementation</button>
+            <button class="nav-link" id="nav-spmo-main-tab" data-bs-toggle="tab" data-bs-target="#nav-spmo-main" type="button" role="tab">SPMO</button>
+            <button class="nav-link" id="nav-acceptance-main-tab" data-bs-toggle="tab" data-bs-target="#nav-acceptance-main" type="button" role="tab">Acceptance</button>
+            <button class="nav-link" id="nav-release-main-tab" data-bs-toggle="tab" data-bs-target="#nav-release-main" type="button" role="tab">Release of Retention</button>
+        </div>
+    </div>
+    <div class="w-100 pt-0 pr-3">
+        <table id="7324bc4d609c6acab008c8b90fd03a45bfad3218" class="display table table-striped text-nowrap " style="width:100%">
+            <thead>
+            </thead>
+            <tbody id="form-body-ajax">
+            </tbody>
+        </table>
     </div>
 
     <!-- EDIT Modal HTML -->
@@ -277,7 +283,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- ADD Modal HTML -->
     <div class="container mt-4 modal-font">
@@ -574,22 +579,25 @@
 
 <script>
     $(document).ready(function() {
-        $('#7324bc4d609c6acab008c8b90fd03a45bfad3218').DataTable({
+        var table = $('#7324bc4d609c6acab008c8b90fd03a45bfad3218').DataTable({
             paging: true,
             searching: true,
             responsive: true,
             lengthChange: true,
             pageLength: 10,
-            "columnDefs": [ {
-                "defaultContent": "-",
-                "targets": "_all",
-                "orderable": false
-            } ],
+            columnDefs: [
+                {
+                    defaultContent: "-",
+                    targets: "_all",
+                    orderable: false,
+                    className: 'text-nowrap'
+                }
+            ],
             language: {
                 paginate: {
-                    first:    'First',
-                    last:     'Last',
-                    next:     'Next',
+                    first: 'First',
+                    last: 'Last',
+                    next: 'Next',
                     previous: 'Previous'
                 },
                 search: "Search:"
@@ -599,51 +607,47 @@
                 dataSrc: '',
             },
             columns: [
-                { data: 'tracking_number', title: 'Tracking Number' },
-                { data: 'project_title', title: 'Project Title' },
-                { data: 'project_description', title: 'Project Description' },
-                { data: 'end_user_id', title: 'End User' },
-                { data: 'fund_source_id', title: 'Fund Source' },
-                { data: 'budget', title: 'Budget' },
-                { data: 'bid_amount', title: 'Bid Amount' },
-                { data: 'contractor', title: 'Contractor' },
-                { data: 'requirement_desc', title: 'Requirement Description' },
-                { data: 'complete_submission', title: 'Complete Submission' },
-                { data: 'detailed_drawings', title: 'Detailed Drawings' },
-                { data: 'scope_of_work', title: 'Scope of Work' },
-                { data: 'estimate', title: 'Estimate' },
-                { data: 'pert_cpm', title: 'PERT/CPM' },
-                { data: 'proj_folder_submission', title: 'Project Folder Submission Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'ovcpd_endorsement', title: 'OVCPD Endorsement Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'budget_clearance', title: 'Budget Clearance Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'ovcaf_approval', title: 'OVCAF Approval Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'opening', title: 'Opening Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'bid_eval', title: 'Bid Evaluation Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'post_qualification', title: 'Post Qualification Date' , render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'bidding', title: 'Bidding Date' , render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'issuance_of_noa', title: 'Issuance of NOA Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'contract_completion', title: 'Contract Completion Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'notice_to_proceed', title: 'Notice to Proceed Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'received_proj_folder', title: 'Received Project Folder Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'preconstruction_meet', title: 'Preconstruction Meeting Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'percentage_complete', title: 'Percentage Complete' },
-                { data: 'proj_status', title: 'Project Status' },
-                { data: 'payment_status', title: 'Payment Status' },
-                { data: 'par_ics_attachment', title: 'PAR/ICS Attachment (SPMO)' },
-                { data: 'date_accomplished', title: 'Date Accomplished', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'contract_end', title: 'Contract End Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'completion_cert', title: 'Completion Certificate', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'final_bill_submission', title: 'Final Bill Submission Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'par_ics_attachment_2', title: 'PAR/ICS Attachment' },
-                { data: 'date_accomplished_2', title: 'Date Accomplished', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'payment_status_2', title: 'Payment Status' },
-                { data: 'final_bill_payment_received', title: 'Final Bill Payment Received Date', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                { data: 'retention_bill_submission', title: 'Retention Bill Submission Date' },
-                { data: 'retention_bill_payment_received', title: 'Retention Bill Payment Received Date' },
-                // { data: 'created_by', title: 'Created By' },
-                // { data: 'updated_by', title: 'Updated By' },
-                // { data: 'created_at', title: 'Created At', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
-                // { data: 'updated_at', title: 'Updated At', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
+                { data: 'tracking_number', title: 'Tracking Number', tab: 'details' },
+                { data: 'project_title', title: 'Project Title', tab: 'details' },
+                { data: 'project_description', title: 'Project Description', tab: 'details' },
+                { data: 'end_user_id', title: 'End User', tab: 'details' },
+                { data: 'fund_source_id', title: 'Fund Source', tab: 'details' },
+                { data: 'budget', title: 'Budget', tab: 'details' },
+                { data: 'bid_amount', title: 'Bid Amount', tab: 'details' },
+                { data: 'contractor', title: 'Contractor', tab: 'details' },
+                
+                // Planning and Design columns
+                { data: 'requirement_desc', title: 'Requirement Description', tab: 'plan-design' },
+                { data: 'complete_submission', title: 'Complete Submission', tab: 'plan-design' },
+                { data: 'detailed_drawings', title: 'Detailed Drawings', tab: 'plan-design' },
+                { data: 'scope_of_work', title: 'Scope of Work', tab: 'plan-design' },
+                { data: 'estimate', title: 'Estimate', tab: 'plan-design' },
+                { data: 'pert_cpm', title: 'PERT CPM', tab: 'plan-design' },
+                
+                // BAC columns
+                { data: 'opening', title: 'Opening', tab: 'bac', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
+                { data: 'pre_bid', title: 'Pre-bid', tab: 'bac' },
+                { data: 'detailed_bid_eval', title: 'Detailed Bid Evaluation', tab: 'bac' },
+                
+                // Procurement columns
+                { data: 'purchase_request', title: 'Purchase Request', tab: 'procurement' },
+                { data: 'ntp', title: 'NTP', tab: 'procurement' },
+                
+                // Implementation columns
+                { data: 'delivery', title: 'Delivery', tab: 'implementation' },
+                { data: 'inspection', title: 'Inspection', tab: 'implementation' },
+                
+                // SPMO columns
+                { data: 'par_ics_attachment', title: 'PAR/ICS Attachment', tab: 'spmo' },
+                { data: 'date_accomplished', title: 'Date Accomplished', tab: 'spmo', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
+                
+                // Acceptance columns
+                { data: 'contract_end', title: 'Contract End Date', tab: 'acceptance', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
+                { data: 'completion_cert', title: 'Completion Certificate', tab: 'acceptance', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
+                
+                // Release of Retention columns
+                { data: 'final_bill_submission', title: 'Final Bill Submission', tab: 'release', render: (data) => data ? `${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()}` : '' },
+                { data: 'par_ics_attachment_2', title: 'PAR/ICS Attachment', tab: 'release' },
                 {
                     title: "Actions",
                     orderable: false,
@@ -657,8 +661,59 @@
                     }
                 }
             ],
+            initComplete: function() {
+                showTabColumns('details'); // Show Project Details columns by default
+            }
         });
-        jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
+
+        // Function to show/hide columns based on active tab
+        function showTabColumns(tabName) {
+            table.columns().every(function() {
+                var column = this;
+                var columnTab = table.settings().init().columns[column.index()].tab;
+                
+                if (!columnTab || columnTab === tabName) {
+                    column.visible(true);
+                } else {
+                    column.visible(false);
+                }
+            });
+        }
+
+        // Handle tab clicks
+        $('.main-tabs .nav-link').on('click', function(e) {
+            e.preventDefault();
+            var tabId = $(this).attr('id');
+            var tabName = tabId.replace('nav-', '').replace('-main-tab', '');
+            
+            $('.main-tabs .nav-link').removeClass('active');
+            $(this).addClass('active');
+            
+            showTabColumns(tabName);
+            table.columns.adjust().draw();
+        });
+
+        // Add Entry button handler
+        $('#add-button').on('click', function() {
+            showPlanModal();
+        });
+
+        // Bulk upload button handler
+        $('.btn-bulk-plan').on('click', function() {
+            $('#bulk-upload-modal-plan').modal('show');
+        });
+
+        // Edit button handler
+        $(document).on('click', '.btn-edit-plan', function() {
+            const id = $(this).data('id');
+            showPlanModal(id);
+        });
+
+        // Delete button handler
+        $(document).on('click', '.btn-delete-plan', function() {
+            const id = $(this).data('id');
+            deletePlanModal(id);
+        });
 
         function showPlanModal(entryId = null) {
             var counter = entryId === null ? 1 : 0;
