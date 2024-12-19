@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{{ asset('css/project.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
-
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     
@@ -39,38 +38,47 @@
                 </button>
             </div>
         </header>
+        <nav class="main-tabs">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-details-main-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Project Details</button>
+                <button class="nav-link" id="nav-accomplishments-main-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Accomplishments</button>
+                <button class="nav-link" id="nav-billing-main-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Billing</button>
+                <button class="nav-link" id="nav-fund-main-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Fund Sources</button>
+                <button class="nav-link" id="nav-dates-main-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Important Dates</button>
+            </div>
+        </nav>
         <div class="w-100 pt-0 pr-3">
-                <table id="07397d633f25a7101990a75864ae03d5a3b9ac07c4ed6accbc52cbfd7d7c13b4" class="display table table-striped text-nowrap " style="width:100%">
-                    <thead>
-                        <tr>
-                            <!-- @foreach ($projectHeaders as $header)
-                                <th scope="col">{{ $header }}</th>
-                            @endforeach -->
-                            <!-- <th class="table-fixed text-center">Actions</th> -->
-                        </tr>
-                    </thead>
-                    <tbody id="form-body-ajax">
-                        <!-- @foreach($jsonFile as $row)
-                            <tr>
-                                @foreach($row as $item)
-                                    @if(count($item) > 1)
-                                        <td>
-                                            @foreach($item as $element)
-                                                <div class="cell-content">{{  $element  }}</div>
-                                            @endforeach
-                                        </td>
-                                    @else
-                                        <td scope="row">{{ $item[0] ?? ''}}</td>
-                                    @endif
-                                @endforeach
-                                <td class="table-fixed">
-                                    <a class="edit"><i data-id="{{ $row[0][0] ?? '' }}" class="btn-edit material-icons">&#xE254;</i></a>
-                                    <a class="delete"><i data-id="{{ $row[0][0] ?? '' }}" class="btn-delete material-icons">&#xE872;</i></a>
-                                </td>
-                            </tr>
-                        @endforeach -->
-                    </tbody>
-                </table>
+            <table id="07397d633f25a7101990a75864ae03d5a3b9ac07c4ed6accbc52cbfd7d7c13b4" class="display table table-striped text-nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Project Title</th>
+                        <th>Project Description</th>
+                        <th>End User</th>
+                        <th>Project Status</th>
+                        <th>Main Status</th>
+                        <th>Accomplishment %</th>
+                        <th>Notes</th>
+                        <th>Remarks</th>
+                        <th>Billing %</th>
+                        <th>Total Billings</th>
+                        <th>Cost of Completed Works</th>
+                        <th>Cost of Remaining Projects</th>
+                        <th>Liquidated Damages Booked</th>
+                        <th>Total Billed Variation Orders</th>
+                        <th>Fund Source</th>
+                        <th>Budget</th>
+                        <th>Bid Amount</th>
+                        <th>Start Date</th>
+                        <th>Original Target Date</th>
+                        <th>Revised Target Date</th>
+                        <th>Original Completion Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
             <div id="flash-message" class="flash-message"></div>
         </div>
     </div>
@@ -355,7 +363,6 @@
                             </div>
                         </div> -->
                         <!-- <div class="tab-pane fade" id="nav-project-status" role="tabpanel" aria-labelledby="nav-project-status-tab">...</div> -->
-
                     </div>
                     <hr>
                     <div style="text-align: right;">
@@ -527,93 +534,113 @@
 <script>
     $(document).ready(function() {
         console.log(@json($jsonFile));
-        // Initialize DataTable with search and pagination enabled
-        $('#07397d633f25a7101990a75864ae03d5a3b9ac07c4ed6accbc52cbfd7d7c13b4').DataTable({
+        var table = $('#07397d633f25a7101990a75864ae03d5a3b9ac07c4ed6accbc52cbfd7d7c13b4').DataTable({
             paging: true,
             searching: true,
             responsive: true,
             lengthChange: true,
-            pageLength: 15,
-            "columnDefs": [ {
-                "targets": 45,
-                "orderable": false
-            } ],
+            columnDefs: [
+                {
+                    defaultContent: "-",
+                    targets: "_all",
+                    orderable: false,
+                    className: 'text-nowrap'
+                }
+            ],
             language: {
                 paginate: {
-                    first:    'First',
-                    last:     'Last',
-                    next:     'Next',
+                    first: 'First',
+                    last: 'Last',
+                    next: 'Next',
                     previous: 'Previous'
                 },
                 search: "Search:"
             },
             ajax: {
-                url: '/ProgressTracker/c/JSON',
-                dataSrc: '',
+                url: '/Project/c/JSON',
+                dataSrc: ''
             },
             columns: [
-                { title: "ID" },
-                { title: "Accomplisment Percentage" },
-                { title: "Notes" },
-                { title: "Billing Percentage" },
-                { title: "Total Billings" },
-                { title: "As Of", render: (data, type, row) => row[5] && !isNaN(new Date(row[5])) ? `${String(new Date(row[5]).getDate()).padStart(2, '0')} ${new Date(row[5]).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(row[5]).getFullYear()}` : '' },
-                { title: "College Unit" },
-                { title: "Year" },
-                { title: "Project Title" },
-                { title: "Status" },
-                { title: "Status As Of", render: (data, type, row) => row[10] && !isNaN(new Date(row[10])) ? `${String(new Date(row[10]).getDate()).padStart(2, '0')} ${new Date(row[10]).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(row[10]).getFullYear()}` : '' },
-                { title: "Notes" },
-                { title: "Dead Contractor" },
-                { title: "Construction Contractor" },
-                { title: "Construction Manager" },
-                { title: "Contract Amount" },
-                { title: "Contractor" },
-                { title: "Contract Completion Date", render: (data, type, row) => row[17] && !isNaN(new Date(row[17])) ? `${String(new Date(row[17]).getDate()).padStart(2, '0')} ${new Date(row[17]).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(row[17]).getFullYear()}` : '' },
-                { title: "Notice of Award", render: (data, type, row) => row[18] && !isNaN(new Date(row[18])) ? `${String(new Date(row[18]).getDate()).padStart(2, '0')} ${new Date(row[18]).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(row[18]).getFullYear()}` : '' },
-                { title: "Notice to Proceed", render: (data, type, row) => row[19] && !isNaN(new Date(row[19])) ? `${String(new Date(row[19]).getDate()).padStart(2, '0')} ${new Date(row[19]).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(row[19]).getFullYear()}` : '' },
-                { title: "Additional Days" },
-                { title: "Contract Duration" },
-                { title: "Fund Source" },
-                { title: "Is Funded" },
-                { title: "Notes" },
-                { title: "Approved Budget" },
-                { title: "Bid Price (PHP)" },
-                { title: "Change Order Number" },
-                { title: "Amount" },    
-                { title: "Notes" },
-                { title: "Revised Contract Amount" },
-                { title: "Suspension Date" },
-                { title: "Resumption Date" },
-                { title: "Resumption Revised Completion Date" },
-                { title: "Extension Date" },
-                { title: "Extension Duration" },
-                { title: "Revised Contract Duration" },
-                { title: "Reason" },
-                { title: "End of Contract Time" },
-                { title: "Original Date of Completion", render: (data, type, row) => row[39] && !isNaN(new Date(row[39])) ? `${String(new Date(row[39]).getDate()).padStart(2, '0')} ${new Date(row[39]).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(row[39]).getFullYear()}` : '' },
-                { title: "Remaining Number of Days" },
-                { title: "Accomplishment" },
-                { title: "Project In Charge" },
-                { title: "Credits" },
-                { title: "Date" },
-                { title: "Notes" },
+                // Project Details columns
+                { data: 'id', tab: 'details' },
+                { data: 'project_title', tab: 'details' },
+                { data: 'project_description', tab: 'details' },
+                { data: 'end_user', tab: 'details' },
+                { data: 'project_status', tab: 'details' },
+                { data: 'main_status', tab: 'details' },
+                
+                // Accomplishments columns
+                { data: 'accomplishment_percentage', tab: 'accomplishments' },
+                { data: 'notes', tab: 'accomplishments' },
+                { data: 'remarks', tab: 'accomplishments' },
+                
+                // Billing columns
+                { data: 'billing_percentage', tab: 'billing' },
+                { data: 'total_billings', tab: 'billing' },
+                { data: 'cost_of_completed_works', tab: 'billing' },
+                { data: 'cost_of_remaining_projects', tab: 'billing' },
+                { data: 'liquidated_damages_booked', tab: 'billing' },
+                { data: 'total_billed_variation_orders', tab: 'billing' },
+                
+                // Fund Sources columns
+                { data: 'fund_source', tab: 'fund' },
+                { data: 'budget', tab: 'fund' },
+                { data: 'bid_amount', tab: 'fund' },
+                
+                // Important Dates columns
+                { data: 'start_date', tab: 'dates', 
+                    render: (data) => data ? ${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()} : '' },
+                { data: 'original_target_date', tab: 'dates',
+                    render: (data) => data ? ${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()} : '' },
+                { data: 'revised_target_date', tab: 'dates',
+                    render: (data) => data ? ${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()} : '' },
+                { data: 'original_date_of_completion', tab: 'dates',
+                    render: (data) => data ? ${String(new Date(data).getDate()).padStart(2, '0')} ${new Date(data).toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${new Date(data).getFullYear()} : '' },
+                
+                // Actions column (always visible)
                 {
-                    title: "Actions",
-                    data: {!! json_encode($jsonFile) !!},
+                    data: null,
                     orderable: false,
                     className: "table-fixed",
                     render: function(data, type, row) {
-                        const id = row[0];
                         return `
-                            <a class="edit"><i data-id="${id}" class="btn-edit material-icons">&#xE254;</i></a>
-                            <a class="delete"><i data-id="${id}" class="btn-delete material-icons">&#xE872;</i></a>
+                            <a class="edit"><i data-id="${row.id}" class="btn-edit material-icons">&#xE254;</i></a>
+                            <a class="delete"><i data-id="${row.id}" class="btn-delete material-icons">&#xE872;</i></a>
                         `;
                     }
                 }
             ],
+            initComplete: function() {
+                showTabColumns('details'); // Show Project Details columns by default
+            }
         });
-        jQuery('.dataTable').wrap('<div class="dataTables_scroll" />');
+
+        // Function to show/hide columns based on active tab
+        function showTabColumns(tabName) {
+            table.columns().every(function() {
+                var column = this;
+                var columnTab = table.settings().init().columns[column.index()].tab;
+                
+                if (!columnTab || columnTab === tabName) {
+                    column.visible(true);
+                } else {
+                    column.visible(false);
+                }
+            });
+        }
+
+        // Handle tab clicks
+        $('.main-tabs .nav-link').on('click', function(e) {
+            e.preventDefault();
+            var tabId = $(this).attr('id');
+            var tabName = tabId.replace('nav-', '').replace('-main-tab', '');
+            
+            $('.main-tabs .nav-link').removeClass('active');
+            $(this).addClass('active');
+            
+            showTabColumns(tabName);
+            table.columns.adjust().draw();
+        });
 
         function showModal(entryId = null) {
             var counter = entryId === null ? 1 : 0;
@@ -771,7 +798,7 @@
                 success: function(response) {
                     $('#add-form-save-btn').removeAttr('disabled');
                     // localStorage.setItem('success_message', response.success);
-                    $('#07397d633f25a7101990a75864ae03d5a3b9ac07c4ed6accbc52cbfd7d7c13b4').DataTable().ajax.reload(null, false);
+                    table.ajax.reload(null, false);
                     closeModals();
                     // console.log("success");
                     flashmessage('success', response.success);
@@ -797,7 +824,7 @@
                 data: $('#modal-form-edit').serialize(),
                 success: function(response) {
                     $('#edit-form-save-btn').removeAttr('disabled');
-                    $('#07397d633f25a7101990a75864ae03d5a3b9ac07c4ed6accbc52cbfd7d7c13b4').DataTable().ajax.reload(null, false);
+                    table.ajax.reload(null, false);
                     
                     if (Array.isArray(response.validation_errors)) {
                         console.log(response.validation_errors);
@@ -837,7 +864,7 @@
                 contentType: false,
                 success: function(response) {
                     $('#bulk-upload-btn').removeAttr('disabled');
-                    $('#07397d633f25a7101990a75864ae03d5a3b9ac07c4ed6accbc52cbfd7d7c13b4').DataTable().ajax.reload(null, false);
+                    table.ajax.reload(null, false);
                     if (Array.isArray(response.errors)) {
                         var errorMessages = response.errors.map(function(errorItem) {
                             var rowNumber = errorItem.row;
@@ -887,7 +914,7 @@
                 data: $('#modal-delete').serialize(),
                 success: function(response) {
                     $('#form-del-btn').removeAttr('disabled');
-                    $('#07397d633f25a7101990a75864ae03d5a3b9ac07c4ed6accbc52cbfd7d7c13b4').DataTable().ajax.reload(null, false);
+                    table.ajax.reload(null, false);
                     closeModals();
                     flashmessage('success', response.success);
                 },
