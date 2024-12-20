@@ -197,7 +197,7 @@ export default {
 
 .tab.active {
   border-bottom: 2px solid #8B0000;
-  color: #8B0000;
+  color: #8A1538;
 }
 
 .form-row {
