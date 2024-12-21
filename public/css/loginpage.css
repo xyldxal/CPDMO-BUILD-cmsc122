@@ -5,8 +5,7 @@ body {
     overflow: hidden;
     background-color: #8D1536;
     position: relative;
-    min-width: 1024px;
-    min-height: 768px;
+    min-width: 1024px;min-height: 768px;
 }
 
 body::before {
@@ -234,12 +233,5 @@ html {
 
     .login-content {
         max-width: 95%;
-    }
-    
-    html {
-        zoom: 100%;
-        -moz-transform: scale(1);
-        -webkit-transform: scale(1);
-        transform: scale(1);
     }
 }

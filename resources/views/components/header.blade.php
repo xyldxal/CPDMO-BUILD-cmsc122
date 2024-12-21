@@ -3,51 +3,6 @@
 <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-
-    .container-xl {
-        max-width: 100%;
-    }
-    .navbar {
-        padding: 0;
-        background-color: #8A1538 !important;
-        font-family: 'Lato', sans-serif;
-    }
-    .main-wrapper {
-        min-height: 89vh;
-    }
-    .nav-link {
-        color: white !important;
-        padding: 1rem 1.5rem !important;
-        font-weight: 500;
-        font-size: 1.1rem;
-        transition: color 0.3s ease;
-    }
-    .nav-link:hover, .nav-link.active {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #ffc107 !important;
-    }
-    .logout-btn {
-        background-color: #004225;
-        color: white;
-        padding: 0.5rem 1.5rem;
-        border-radius: 4px;
-        text-decoration: none;
-        font-family: 'Lato', sans-serif;
-        font-size: 1.1rem;
-    }
-    .logout-btn:hover {
-        background-color: #003319;
-        color: white;
-    }
-    .logo-image {
-        height: 45px;
-        width: auto;
-        margin: 0.5rem 1rem;
-    }
-</style>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         function getStoredValue(key) {
@@ -110,7 +65,7 @@
             window.dispatchEvent(new CustomEvent('displayComponent', { detail: { component: 'about' } }));
         });
 
-        // Commented out event listeners for future use
+        //
         /* document.getElementById('nav-completed')?.addEventListener('click', function(event) {
             event.preventDefault();
             window.dispatchEvent(new CustomEvent('displayComponent', { detail: { component: 'completed' } }));
@@ -155,14 +110,14 @@
 
 <nav class="navbar navbar-expand-lg">
     <div class="container-xl">
-        <div class="d-flex align-items-center me-auto">
+        <div class="d-flex align-items-center">
             <img src="{{ asset('images/buildtemp2.png') }}" alt="BUILD" class="logo-image">
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" id="nav-dashboard" href="/dashboard">DASHBOARD</a>
                 </li>
