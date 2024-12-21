@@ -8336,8 +8336,21 @@ textarea.form-control {
  *    CUSTOM CSS CONFIGURATIONS ARE PLACED AFTER THIS BLOCK
  */
 
-html, body {
-  height: 100%;
+ body {
   margin: 0;
+  font-family: 'Lato', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #8D1536;
+  position: relative;
+  min-width: 1024px;
+  min-height: 768px;
+}
+
+html {
+  zoom: 100%;
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  transform: scale(1);
 }
 

@@ -5,6 +5,8 @@ body {
     overflow: hidden;
     background-color: #8D1536;
     position: relative;
+    min-width: 1024px;
+    min-height: 768px;
 }
 
 body::before {
@@ -217,6 +219,13 @@ img.mb-3 {
     margin: 1.5rem 0;
 }
 
+html {
+    zoom: 100%;
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
 /* Media query for mobile devices */
 @media (max-width: 768px) {
     body {
@@ -225,5 +234,12 @@ img.mb-3 {
 
     .login-content {
         max-width: 95%;
+    }
+    
+    html {
+        zoom: 100%;
+        -moz-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
     }
 }

@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>OVCPD Project Progress Tracker</title>
-    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style scoped>
 
@@ -141,6 +141,22 @@
     </div>
 </div>
 
+<script>
+$(document).ready(function() {
+    // Ensure backdrop is added
+    $('.modal').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+    
+    // Clean up modal backdrop on close
+    $('.modal').on('hidden.bs.modal', function () {
+        if($('.modal.show').length) {
+            $('body').addClass('modal-open');
+        }
+    });
+});
+</script>
 
 </body>
 </html>
